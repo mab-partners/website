@@ -135,7 +135,9 @@ section { padding: 76px 0; }
 .hero h1 { font-size: 46px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
 .hero-sub { font-size: 18px; color: var(--slate); max-width: 480px; margin-top: 22px; }
 .align-box { position: relative; }
-.align-caption { font-size: 13px; color: var(--slate); margin-top: 14px; }
+.align-box svg { display: block; width: 100%; height: auto; overflow: visible; }
+.align-caption { font-size: 13px; color: var(--slate); margin-top: 16px; max-width: 380px; }
+@media (max-width: 900px) { .align-box { max-width: 460px; } }
 .proof-strip {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   margin-top: 38px; padding-top: 26px; border-top: 1px solid var(--line);
