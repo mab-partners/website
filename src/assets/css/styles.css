@@ -15,6 +15,9 @@
   --line: #E3E0D8;
   --white: #FFFFFF;
 
+  --font-display: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-body: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+
   --wrap: 1120px;
   --pad: 32px;
 }
@@ -25,14 +28,15 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-body);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 h1, h2, h3, h4 {
-  font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
-  font-weight: 500;
+  font-family: var(--font-display);
+  font-weight: 600;
   line-height: 1.15;
+  letter-spacing: -0.015em;
   margin: 0;
   color: var(--ink);
 }
@@ -51,7 +55,7 @@ section { padding: 76px 0; }
   margin-bottom: 14px; letter-spacing: 0.2px;
 }
 .section-head { max-width: 640px; margin-bottom: 48px; }
-.section-head h2 { font-size: 32px; letter-spacing: -0.3px; }
+.section-head h2 { font-size: 31px; letter-spacing: -0.02em; }
 .section-head p { color: var(--slate); font-size: 17px; margin-top: 16px; }
 
 @media (max-width: 640px) {
@@ -88,8 +92,8 @@ section { padding: 76px 0; }
   padding-top: 20px; padding-bottom: 20px; gap: 24px;
 }
 .brand {
-  font-family: 'Fraunces', serif; font-size: 20px; font-weight: 600;
-  letter-spacing: 0.2px; white-space: nowrap;
+  font-family: var(--font-display); font-size: 19px; font-weight: 700;
+  letter-spacing: -0.01em; white-space: nowrap;
 }
 .brand span { color: var(--brass-dark); }
 .nav-links { display: flex; gap: 28px; font-size: 14.5px; color: var(--slate); align-items: center; }
@@ -122,7 +126,7 @@ section { padding: 76px 0; }
 /* Hero ---------------------------------------------------------------- */
 .hero { padding: 92px 0 84px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px; align-items: center; }
 .hero .kicker { font-size: 14.5px; color: var(--brass-dark); font-weight: 500; margin-bottom: 18px; }
-.hero h1 { font-size: 47px; letter-spacing: -0.5px; }
+.hero h1 { font-size: 46px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
 .hero-sub { font-size: 18px; color: var(--slate); max-width: 480px; margin-top: 22px; }
 .align-box { position: relative; }
 .align-caption { font-size: 13px; color: var(--slate); margin-top: 14px; }
@@ -143,7 +147,7 @@ section { padding: 76px 0; }
 
 /* Page hero (interior pages) ------------------------------------------------- */
 .page-hero { padding: 72px 0 56px; }
-.page-hero h1 { font-size: 40px; letter-spacing: -0.4px; max-width: 780px; }
+.page-hero h1 { font-size: 39px; font-weight: 700; letter-spacing: -0.022em; line-height: 1.1; max-width: 780px; }
 .page-hero .lead { font-size: 18px; color: var(--slate); margin-top: 20px; max-width: 620px; }
 @media (max-width: 640px) { .page-hero { padding: 44px 0 36px; } .page-hero h1 { font-size: 30px; } }
 
@@ -160,7 +164,7 @@ section { padding: 76px 0; }
 .prose li { margin: 8px 0; }
 .prose strong { font-weight: 600; }
 .prose blockquote {
-  font-family: 'Fraunces', serif; font-style: italic; font-size: 20px; line-height: 1.5;
+  font-family: var(--font-body); font-style: italic; font-weight: 400; font-size: 20px; line-height: 1.5;
   margin: 28px 0; padding-left: 22px; border-left: 2px solid var(--brass); color: var(--ink);
 }
 .prose table { border-collapse: collapse; width: 100%; margin: 22px 0; font-size: 15px; }
@@ -170,10 +174,10 @@ section { padding: 76px 0; }
 
 /* Stat row ---------------------------------------------------------------- */
 .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
-.stat-num { font-family: 'Fraunces', serif; font-size: 42px; font-weight: 500; color: var(--ink); line-height: 1.1; }
+.stat-num { font-family: var(--font-display); font-size: 40px; font-weight: 600; color: var(--ink); line-height: 1.1; }
 .stat-label { font-size: 14.5px; color: var(--slate); margin-top: 8px; }
 .pull-quote {
-  font-family: 'Fraunces', serif; font-style: italic; font-weight: 400;
+  font-family: var(--font-body); font-style: italic; font-weight: 400;
   font-size: 22px; line-height: 1.5; color: var(--ink); max-width: 680px;
   margin: 48px 0 0; padding-left: 24px; border-left: 2px solid var(--brass);
 }
@@ -222,7 +226,7 @@ section { padding: 76px 0; }
 .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
 .result-card { background: var(--paper); padding: 32px 28px; }
 .result-tag { font-size: 13px; color: var(--brass-dark); font-weight: 500; margin-bottom: 12px; }
-.result-arrow { font-family: 'Fraunces', serif; font-size: 26px; margin: 12px 0; color: var(--ink); }
+.result-arrow { font-family: var(--font-display); font-size: 25px; font-weight: 600; letter-spacing: -0.01em; margin: 12px 0; color: var(--ink); }
 .result-card p { font-size: 14.5px; color: var(--slate); }
 @media (max-width: 800px) { .results-grid { grid-template-columns: 1fr; } }
 
@@ -236,8 +240,8 @@ section { padding: 76px 0; }
 /* Pricing ---------------------------------------------------------------- */
 .price-row { display: flex; gap: 56px; flex-wrap: wrap; align-items: flex-start; }
 .price-left, .price-right { flex: 1 1 320px; }
-.price-num { font-family: 'Fraunces', serif; font-size: 40px; }
-.price-num span { font-size: 16px; color: var(--slate); font-family: 'IBM Plex Sans', sans-serif; }
+.price-num { font-family: var(--font-display); font-size: 38px; font-weight: 600; letter-spacing: -0.02em; }
+.price-num span { font-size: 16px; color: var(--slate); font-family: var(--font-body); }
 .price-list { list-style: none; padding: 0; margin: 20px 0 0; }
 .price-list li { padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px; color: var(--slate); }
 .price-list li strong { color: var(--ink); font-weight: 500; }
@@ -251,7 +255,7 @@ section { padding: 76px 0; }
 .tier.featured { box-shadow: inset 0 3px 0 var(--brass); }
 .tier .tier-flag { font-size: 12px; font-weight: 600; color: var(--brass-dark); letter-spacing: 0.4px; text-transform: uppercase; margin-bottom: 10px; }
 .tier h3 { font-size: 21px; }
-.tier .tier-price { font-family: 'Fraunces', serif; font-size: 28px; margin: 12px 0 4px; }
+.tier .tier-price { font-family: var(--font-display); font-size: 26px; font-weight: 600; margin: 12px 0 4px; }
 .tier ul { list-style: none; padding: 0; margin: 18px 0 24px; }
 .tier li { font-size: 14.5px; color: var(--slate); padding: 9px 0 9px 20px; position: relative; border-top: 1px solid var(--line); }
 .tier li::before { content: "\2013"; position: absolute; left: 0; color: var(--brass-dark); }
@@ -263,7 +267,7 @@ section { padding: 76px 0; }
 .quote-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 @media (max-width: 900px) { .quote-grid.cols-3 { grid-template-columns: 1fr; } }
 .quote-card { background: var(--paper); padding: 30px 28px; }
-.quote-card blockquote { margin: 0; font-family: 'Fraunces', serif; font-size: 17px; font-style: italic; line-height: 1.5; }
+.quote-card blockquote { margin: 0; font-family: var(--font-body); font-size: 16px; font-style: italic; line-height: 1.55; color: var(--ink); }
 .quote-card cite { display: block; margin-top: 16px; font-style: normal; font-size: 13.5px; color: var(--brass-dark); font-weight: 500; }
 @media (max-width: 760px) { .quote-grid { grid-template-columns: 1fr; } }
 
