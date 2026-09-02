@@ -91,11 +91,9 @@ section { padding: 76px 0; }
   display: flex; align-items: center; justify-content: space-between;
   padding-top: 20px; padding-bottom: 20px; gap: 24px;
 }
-.brand {
-  font-family: var(--font-display); font-size: 19px; font-weight: 700;
-  letter-spacing: -0.01em; white-space: nowrap;
-}
-.brand span { color: var(--brass-dark); }
+.brand { display: inline-flex; align-items: center; flex: none; }
+.brand img { height: 38px; width: auto; display: block; }
+@media (max-width: 640px) { .brand img { height: 30px; } }
 .nav-links { display: flex; gap: 28px; font-size: 14.5px; color: var(--slate); align-items: center; }
 .nav-links a { padding: 4px 0; border-bottom: 1px solid transparent; }
 .nav-links a:hover,
@@ -348,6 +346,9 @@ section { padding: 76px 0; }
 
 /* Footer ---------------------------------------------------------------- */
 .site-footer { border-top: 1px solid var(--line); padding: 40px 0; font-size: 13.5px; color: var(--slate); margin-top: 0; }
+.footer-brand { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; padding-bottom: 26px; margin-bottom: 26px; border-bottom: 1px solid var(--line); }
+.footer-brand img { height: 44px; width: auto; }
+.footer-brand p { font-size: 13.5px; color: var(--slate); max-width: 340px; }
 .footer-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px 32px; align-items: flex-start; }
 .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
 .footer-links a:hover { color: var(--ink); }
