@@ -18,6 +18,7 @@
     "youtube": "https://www.youtube.com/@ThePitchandTheCatch"
   },
   "nav": [
+    { "text": "Home", "url": "/" },
     { "text": "Strategy as a Service", "url": "/strategy-as-a-service/" },
     { "text": "HBDI", "url": "/hbdi/" },
     { "text": "Book", "url": "/book/" },
