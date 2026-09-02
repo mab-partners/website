@@ -92,8 +92,8 @@ section { padding: 76px 0; }
   padding-top: 20px; padding-bottom: 20px; gap: 24px;
 }
 .brand { display: inline-flex; align-items: center; flex: none; }
-.brand img { height: 38px; width: auto; display: block; }
-@media (max-width: 640px) { .brand img { height: 30px; } }
+.brand img { height: 30px; width: auto; display: block; }
+@media (max-width: 640px) { .brand img { height: 26px; } }
 .nav-links { display: flex; gap: 28px; font-size: 14.5px; color: var(--slate); align-items: center; }
 .nav-links a { padding: 4px 0; border-bottom: 1px solid transparent; }
 .nav-links a:hover,
