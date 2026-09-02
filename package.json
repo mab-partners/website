@@ -1,0 +1,15 @@
+{
+  "name": "mab-partners-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "mab Partners — static marketing site (Eleventy)",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve --port=8080",
+    "clean": "rm -rf _site"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

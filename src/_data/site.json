@@ -1,0 +1,28 @@
+{
+  "name": "mab Partners",
+  "legalName": "VHC Group llc.",
+  "url": "https://mab-partners.com",
+  "tagline": "Securing value in transformation.",
+  "description": "mab Partners is a boutique strategy and management consultancy. We align organizations so ambition turns into delivered results — through Strategy as a Service, HBDI team effectiveness, and executive coaching.",
+  "email": "horn@mab-partners.com",
+  "phone": "+1 (908) 294-0346",
+  "phoneHref": "+19082940346",
+  "calendly": "https://calendly.com/horn-mab-partners/45min",
+  "amazonBook": "https://www.amazon.com/dp/B0G635K862",
+  "youtubeChannel": "https://www.youtube.com/@ThePitchandTheCatch",
+  "youtubeChannelId": "UCYV_D465EbJFMrOmS7S7mLg",
+  "youtubeUploadsPlaylist": "UUYV_D465EbJFMrOmS7S7mLg",
+  "social": {
+    "instagram": "https://www.instagram.com/thepitchandthecatch",
+    "linkedin": "https://www.linkedin.com/in/dirkhorn/",
+    "youtube": "https://www.youtube.com/@ThePitchandTheCatch"
+  },
+  "nav": [
+    { "text": "Strategy as a Service", "url": "/strategy-as-a-service/" },
+    { "text": "HBDI", "url": "/hbdi/" },
+    { "text": "Book", "url": "/book/" },
+    { "text": "Retreat", "url": "/exec-retreat/" },
+    { "text": "Podcast", "url": "/podcast/" },
+    { "text": "About", "url": "/about/" }
+  ]
+}

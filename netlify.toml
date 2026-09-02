@@ -1,0 +1,56 @@
+# Netlify build + routing config for mab-partners.com
+
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# --- Redirects from the old Wix URL structure to the new slugs ---
+# (301 permanent so search engines and existing links follow through.)
+
+[[redirects]]
+  from = "/services"
+  to = "/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thewinningbalance"
+  to = "/book/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/execretreat"
+  to = "/exec-retreat/"
+  status = 301
+  force = true
+
+# Old Wix-hosted PDF assets -> rehosted copies
+[[redirects]]
+  from = "/_files/ugd/9ea330_369511e1667f49dbb313f48d282efca6.pdf"
+  to = "/assets/pdf/the-winning-balance-chapter-1.pdf"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/_files/ugd/84d0e1_b94fdbffd8e24e22916640d465b19ea3.pdf"
+  to = "/assets/pdf/winning-balance-retreat-overview.pdf"
+  status = 301
+  force = true
+
+# Security + caching headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

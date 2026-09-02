@@ -1,0 +1,6 @@
+# Old Wix URLs -> new slugs
+/services              /about/               301!
+/thewinningbalance     /book/                301!
+/execretreat           /exec-retreat/        301!
+/_files/ugd/9ea330_369511e1667f49dbb313f48d282efca6.pdf   /assets/pdf/the-winning-balance-chapter-1.pdf   301!
+/_files/ugd/84d0e1_b94fdbffd8e24e22916640d465b19ea3.pdf   /assets/pdf/winning-balance-retreat-overview.pdf   301!
