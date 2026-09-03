@@ -101,11 +101,11 @@ section { padding: 76px 0; }
 .site-header { border-bottom: 1px solid var(--line); background: var(--paper); }
 .site-header .wrap {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 18px; padding-bottom: 18px; gap: 24px;
+  padding-top: 14px; padding-bottom: 14px; gap: 24px;
 }
 .brand { display: inline-flex; align-items: center; flex: none; }
-.brand img { height: 42px; width: auto; display: block; }
-@media (max-width: 640px) { .brand img { height: 36px; } }
+.brand img { height: 50px; width: auto; display: block; }
+@media (max-width: 640px) { .brand img { height: 40px; } }
 
 .nav-links { display: flex; align-items: center; gap: 28px; font-size: 14.5px; color: var(--slate); }
 .nav-links a { display: inline-flex; align-items: center; line-height: 1.2; }
