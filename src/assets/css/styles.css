@@ -7,7 +7,7 @@
 :root {
   --ink: #152238;
   --ink-deep: #0d1626;
-  --paper: #FAFAF8;
+  --paper: #FFFFFF;
   --slate: #5C6472;
   --brass: #9C7A3C;
   --brass-dark: #7A5F2D;
@@ -142,14 +142,26 @@ section { padding: 76px 0; }
 }
 
 /* Hero ---------------------------------------------------------------- */
-.hero { padding-top: 92px; padding-bottom: 84px; display: grid; grid-template-columns: 0.92fr 1.08fr; gap: 56px; align-items: center; }
-.hero .kicker { font-size: 14.5px; color: var(--brass-dark); font-weight: 500; margin-bottom: 18px; }
+.hero { padding-top: 92px; padding-bottom: 84px; display: grid; grid-template-columns: 1.12fr 0.78fr; gap: 56px; align-items: center; }
+.hero > div:first-child { max-width: 560px; }
+.hero .kicker { font-size: 13px; letter-spacing: 0.9px; text-transform: uppercase; color: var(--brass-dark); font-weight: 600; margin-bottom: 16px; }
 .hero h1 { font-size: 46px; font-weight: 700; letter-spacing: -0.025em; line-height: 1.08; }
 .hero-sub { font-size: 18px; color: var(--slate); max-width: 480px; margin-top: 22px; }
-.align-box { position: relative; }
-.align-box svg { display: block; width: 100%; height: auto; overflow: visible; }
-.align-caption { font-size: 13px; color: var(--slate); margin-top: 16px; max-width: 440px; }
-@media (max-width: 900px) { .align-box { max-width: 460px; } }
+
+/* Two-step lead: a prominent statement, then a quieter line — a size cascade
+   from the H1 down to the CTA so the eye has a path to follow. */
+.hero-lead { margin-top: 20px; }
+.hero-lead p:first-child { font-size: 20px; line-height: 1.5; color: var(--ink); max-width: 460px; }
+.hero-lead p + p { font-size: 15.5px; line-height: 1.6; color: var(--slate); max-width: 440px; margin-top: 14px; }
+
+.hero .btn-row { margin-top: 32px; gap: 24px; }
+.hero .btn-primary { padding: 15px 28px; font-size: 15.5px; }
+.hero .btn-primary::after { content: " \2192"; margin-left: 6px; display: inline-block; }
+
+.align-box { position: relative; transform: translateY(34px); }
+.align-box svg { display: block; width: 100%; height: auto; overflow: visible; opacity: 0.88; }
+.align-caption { font-size: 12.5px; color: var(--slate); margin-top: 14px; max-width: 420px; }
+@media (max-width: 900px) { .align-box { max-width: 440px; transform: none; } }
 .proof-strip {
   display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   margin-top: 38px; padding-top: 26px; border-top: 1px solid var(--line);
@@ -163,6 +175,14 @@ section { padding: 76px 0; }
 }
 @media (max-width: 640px) {
   .hero h1 { font-size: 33px; }
+  .hero-lead p:first-child { font-size: 17.5px; }
+  .hero-lead p + p { font-size: 15px; }
+}
+/* The primary hero CTA is a full sentence — let it breathe on narrow screens */
+@media (max-width: 560px) {
+  .hero .btn-row { flex-direction: column; align-items: stretch; }
+  .hero .btn-row .btn-primary { text-align: center; }
+  .hero .btn-row .btn-secondary { text-align: center; align-self: flex-start; }
 }
 
 /* Page hero (interior pages) ------------------------------------------------- */
@@ -170,6 +190,20 @@ section { padding: 76px 0; }
 .page-hero h1 { font-size: 39px; font-weight: 700; letter-spacing: -0.022em; line-height: 1.1; max-width: 780px; }
 .page-hero .lead { font-size: 18px; color: var(--slate); margin-top: 20px; max-width: 620px; }
 @media (max-width: 640px) { .page-hero { padding-top: 44px; padding-bottom: 36px; } .page-hero h1 { font-size: 30px; } }
+
+/* In-page jump nav (retreat hero) ------------------------------------------- */
+.jump-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; max-width: 740px; }
+.jump-nav a {
+  font-family: var(--font-body); font-size: 13px; font-weight: 500; line-height: 1;
+  color: var(--ink); text-decoration: none;
+  padding: 9px 15px; border: 1px solid var(--line); border-radius: 999px;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.jump-nav a:hover, .jump-nav a:focus-visible {
+  border-color: var(--brass); color: var(--brass-dark); background: #FAF7F0;
+}
+section[id] { scroll-margin-top: 28px; }
+@media (max-width: 640px) { .jump-nav { gap: 8px; margin-top: 26px; } .jump-nav a { font-size: 12.5px; padding: 8px 13px; } }
 
 /* Generic prose ---------------------------------------------------------------- */
 .prose { max-width: 720px; }
@@ -264,7 +298,10 @@ section { padding: 76px 0; }
 .tl-month { font-size: 13px; color: var(--brass-dark); font-weight: 600; margin-bottom: 10px; letter-spacing: 0.2px; }
 .tl-item h3 { font-size: 19px; margin-bottom: 10px; }
 .tl-item p { font-size: 15px; color: var(--slate); }
+.timeline.cols-4 { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) { .timeline.cols-4 { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 800px) { .timeline { grid-template-columns: 1fr; } }
+@media (max-width: 600px) { .timeline.cols-4 { grid-template-columns: 1fr; } }
 
 /* Results (light-fill cards, brass rule) ---------------------------------------- */
 .results-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
@@ -421,7 +458,7 @@ section { padding: 76px 0; }
 @media (max-width: 640px) { .cta-band h2 { font-size: 26px; } }
 
 /* Mid-page CTA (lighter, bordered) ------------------------------------------ */
-.cta-mid { padding: 44px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #F4F2EC; }
+.cta-mid { padding: 44px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #F6F6F4; }
 .cta-mid .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px 40px; flex-wrap: wrap; }
 .cta-mid h2 { font-size: 22px; max-width: 620px; }
 .cta-mid .btn-row { margin-top: 0; }
@@ -478,6 +515,58 @@ section { padding: 76px 0; }
 .trusted { padding: 40px 0 44px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .trusted .label { font-size: 12.5px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--slate); font-weight: 600; margin-bottom: 22px; }
 
+/* Homepage narrative sections ------------------------------------------------- */
+.wide-head { max-width: 780px; }
+
+.approach-body { max-width: 680px; }
+.approach-body p { font-size: 17px; color: var(--ink); margin: 16px 0; line-height: 1.55; }
+.approach-body p:first-child { margin-top: 0; }
+
+/* Approach — leadership alignment cascading into three steps */
+.approach-diagram { display: flex; align-items: center; gap: 48px; margin-top: 20px; flex-wrap: wrap; }
+.approach-visual { margin-top: 0; flex: 1 1 46%; min-width: 280px; }
+.approach-visual svg { display: block; width: 100%; height: auto; }
+
+/* Approach — the method in three steps */
+.approach-steps { display: flex; flex-direction: column; gap: 28px; margin-top: 0; flex: 1 1 320px; min-width: 260px; }
+.step { border-top: 2px solid var(--brass); padding-top: 18px; }
+.step .n { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 1px; color: var(--brass-dark); }
+.step h3 { font-size: 18px; margin: 8px 0; }
+.step p { font-size: 14.5px; color: var(--slate); line-height: 1.55; }
+
+/* One client story */
+.case { display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 32px 56px; align-items: start; }
+.case-figure .num { font-family: var(--font-display); font-weight: 700; font-size: 34px; letter-spacing: -0.03em; color: var(--ink); line-height: 1.05; }
+.case-figure .num span { color: var(--blue); }
+.case-figure .note { font-size: 13px; color: var(--slate); margin-top: 8px; }
+.growth-chart { width: 100%; max-width: 260px; margin-top: 18px; }
+.growth-chart svg { width: 100%; height: auto; display: block; }
+.case-body p { font-size: 16px; color: var(--ink); margin: 14px 0; max-width: 580px; line-height: 1.55; }
+.case-body p:first-child { margin-top: 0; }
+.case-body p strong { color: var(--brass-dark); font-weight: 600; }
+.case-body .case-note { font-size: 14px; color: var(--slate); }
+.case-hook {
+  margin-top: 40px; padding: 24px 28px; background: var(--white);
+  border: 1px solid var(--line); border-left: 4px solid var(--brass); border-radius: 4px;
+  box-shadow: var(--card-shadow);
+}
+.case-hook p { font-size: 16.5px; color: var(--ink); line-height: 1.5; margin: 0 0 12px; max-width: 640px; }
+@media (max-width: 760px) { .case { grid-template-columns: 1fr; gap: 18px; } .growth-chart { max-width: 300px; } }
+
+/* Ways to work together */
+.offer-icon { width: 42px; height: 42px; color: var(--brass-dark); margin-bottom: 14px; }
+.offer-icon svg { width: 100%; height: 100%; display: block; }
+.offer-feature {
+  background: var(--white); border: 1px solid var(--line); border-left: 4px solid var(--brass);
+  border-radius: 4px; box-shadow: var(--card-shadow); padding: 36px 40px 34px; margin-bottom: 24px;
+}
+.offer-feature .offer-icon { width: 46px; height: 46px; }
+.offer-feature h3 { font-size: 24px; }
+.offer-feature p { font-size: 16.5px; color: var(--slate); margin: 12px 0 22px; max-width: 640px; line-height: 1.55; }
+.offer-secondary { margin-top: 4px; }
+.offer-secondary .topline-card { border-top-width: 2px; border-top-color: var(--brass); }
+@media (max-width: 640px) { .offer-feature { padding: 28px 24px; } }
+
 /* Retreat imagery ------------------------------------------------------------- */
 .retreat-hero-img {
   margin-top: 32px; border-radius: 6px; overflow: hidden; position: relative;
@@ -490,8 +579,48 @@ section { padding: 76px 0; }
   color: #fff; font-size: 13px; letter-spacing: 0.3px;
 }
 .photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.photo-strip.cols-2 { grid-template-columns: 1fr 1fr; gap: 20px; }
 .photo-strip img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 4px; box-shadow: var(--card-shadow); }
-@media (max-width: 720px) { .photo-strip { grid-template-columns: 1fr 1fr; } }
+.photo-strip.tall img { aspect-ratio: 3 / 4; }
+@media (max-width: 720px) { .photo-strip { grid-template-columns: 1fr 1fr; } .photo-strip.cols-2 { grid-template-columns: 1fr; } }
+@media (max-width: 440px) { .photo-strip.tall { grid-template-columns: 1fr 1fr; } }
+
+/* Image placeholder — marks where real photography still needs to be sourced */
+.img-placeholder {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  aspect-ratio: 16 / 9; padding: 20px;
+  background: var(--paper); border: 1px dashed var(--line); border-radius: 4px;
+  color: var(--slate); font-size: 13px; line-height: 1.5;
+}
+.img-placeholder.wide { aspect-ratio: 16 / 7; margin-top: 32px; }
+.img-placeholder span { max-width: 260px; }
+.img-placeholder span::before { content: "⬚"; display: block; font-size: 22px; color: var(--line); margin-bottom: 6px; }
+.photo-strip .img-placeholder { aspect-ratio: 3 / 2; }
+
+/* Retreats index — one card per retreat */
+.retreat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.retreat-card {
+  display: flex; flex-direction: column; background: var(--white);
+  border: 1px solid var(--line); border-radius: 4px; overflow: hidden;
+  box-shadow: var(--card-shadow); transition: transform .18s ease, box-shadow .18s ease;
+}
+.retreat-card:hover { transform: translateY(-3px); box-shadow: var(--card-shadow-hover); }
+.retreat-card > img,
+.retreat-card > .img-placeholder { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; border: 0; border-radius: 0; }
+.retreat-card .rc-body { padding: 26px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+.retreat-card .rc-facts { font-size: 12.5px; letter-spacing: 0.3px; color: var(--brass-dark); font-weight: 600; }
+.retreat-card h3 { font-size: 20px; margin: 8px 0 10px; }
+.retreat-card p { font-size: 14.5px; color: var(--slate); line-height: 1.55; }
+.retreat-card .btn-row { margin-top: auto; padding-top: 18px; }
+@media (max-width: 760px) { .retreat-grid { grid-template-columns: 1fr; } }
+
+/* "working title" tag next to a heading */
+.wip-badge {
+  display: inline-block; vertical-align: middle; margin-left: 10px;
+  font-family: var(--font-body); font-size: 11px; font-weight: 600; letter-spacing: 0.4px;
+  text-transform: uppercase; color: var(--brass-dark);
+  border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px;
+}
 
 /* Scroll-reveal --------------------------------------------------------------- */
 .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }

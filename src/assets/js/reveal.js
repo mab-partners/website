@@ -10,7 +10,9 @@
     '.grid-3', '.grid-2', '.quote-grid', '.tier-grid', '.team-grid', '.brand-grid',
     '.price-row', '.book-hero', '.fact-grid', '.logo-strip', '.author-row',
     '.coach-grid', '.embed', '.contact-form', '.quote-band-inner', '.band-split',
-    '.value-list', '.retreat-hero-img', '.photo-strip', '.pull-quote', '.stat-callout'
+    '.value-list', '.retreat-hero-img', '.photo-strip', '.pull-quote', '.stat-callout',
+    '.approach-body', '.approach-visual', '.approach-steps', '.case', '.case-hook', '.offer-feature',
+    '.retreat-grid', '.img-placeholder.wide'
   ].join(',');
 
   var els = Array.prototype.slice.call(document.querySelectorAll(SELECTOR));
