@@ -686,7 +686,7 @@ section[id] { scroll-margin-top: 28px; }
 
 /* Homepage challenge sections: Organization / Team / Me ---------------------- */
 .challenge-section { padding: 88px 0; }
-.challenge-section--organization { background: #F8F6F1; padding: 72px 0 76px; }
+.challenge-section--organization { background: #F4F5F7; padding: 72px 0 76px; }
 .challenge-head { max-width: 680px; }
 .challenge-head h2 { font-size: 34px; margin: 10px 0 20px; letter-spacing: -0.02em; }
 .challenge-head p { font-size: 17px; color: var(--ink); line-height: 1.6; margin: 14px 0; max-width: 620px; }
@@ -696,6 +696,7 @@ section[id] { scroll-margin-top: 28px; }
 .challenge-how-label { font-size: 13px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--brass-dark); font-weight: 600; margin-bottom: 20px; }
 
 .approach-steps--compact { gap: 14px; }
+.approach-steps--compact .challenge-how-label { margin-bottom: 4px; }
 .approach-steps--compact .step { padding-top: 14px; }
 .approach-steps--compact .step h3 { margin: 6px 0 0; }
 
