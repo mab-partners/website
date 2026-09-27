@@ -64,6 +64,13 @@
   }
 
   root.addEventListener('click', function (e) {
+    var scrollBtn = e.target.closest('[data-scroll-target]');
+    if (scrollBtn) {
+      var target = document.querySelector(scrollBtn.getAttribute('data-scroll-target'));
+      if (target) target.scrollIntoView({ block: 'start', behavior: 'smooth' });
+      return;
+    }
+
     var outcomeBtn = e.target.closest('[data-outcome]');
     if (outcomeBtn) {
       showResult(outcomeBtn.getAttribute('data-outcome'));

@@ -12,7 +12,8 @@
     '.coach-grid', '.embed', '.contact-form', '.quote-band-inner', '.band-split',
     '.value-list', '.retreat-hero-img', '.photo-strip', '.pull-quote', '.stat-callout',
     '.approach-body', '.approach-visual', '.approach-steps', '.case', '.case-hook', '.offer-feature',
-    '.retreat-grid', '.img-placeholder.wide'
+    '.retreat-grid', '.img-placeholder.wide',
+    '.challenge-head', '.challenge-how', '.challenge-proof', '.challenge-cta', '.challenge-split', '.challenge-section--me'
   ].join(',');
 
   var els = Array.prototype.slice.call(document.querySelectorAll(SELECTOR));

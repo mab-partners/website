@@ -684,6 +684,66 @@ section[id] { scroll-margin-top: 28px; }
 .case-hook p { font-size: 16.5px; color: var(--ink); line-height: 1.5; margin: 0 0 12px; max-width: 640px; }
 @media (max-width: 760px) { .case { grid-template-columns: 1fr; gap: 18px; } .growth-chart { max-width: 300px; } }
 
+/* Homepage challenge sections: Organization / Team / Me ---------------------- */
+.challenge-section { padding: 88px 0; }
+.challenge-section--organization { background: #F8F6F1; padding: 72px 0 76px; }
+.challenge-head { max-width: 680px; }
+.challenge-head h2 { font-size: 34px; margin: 10px 0 20px; letter-spacing: -0.02em; }
+.challenge-head p { font-size: 17px; color: var(--ink); line-height: 1.6; margin: 14px 0; max-width: 620px; }
+.challenge-head .btn-row { margin-top: 26px; }
+
+.challenge-how { margin-top: 48px; }
+.challenge-how-label { font-size: 13px; letter-spacing: 0.6px; text-transform: uppercase; color: var(--brass-dark); font-weight: 600; margin-bottom: 20px; }
+
+.approach-steps--compact { gap: 14px; }
+.approach-steps--compact .step { padding-top: 14px; }
+.approach-steps--compact .step h3 { margin: 6px 0 0; }
+
+.challenge-proof { margin-top: 48px; }
+
+.case--compact { gap: 28px 48px; align-items: center; }
+.case--compact .num { font-size: 46px; }
+.case--compact .note { font-size: 13.5px; margin-top: 10px; }
+.case--compact .growth-chart { max-width: 220px; margin-top: 16px; }
+.case--compact .case-body p:first-child { font-size: 17.5px; margin-top: 0; line-height: 1.5; }
+
+.challenge-cta { margin-top: 44px; }
+
+/* Team: text alongside a real photo */
+.challenge-split { display: grid; grid-template-columns: 1fr 0.9fr; gap: 56px; align-items: center; }
+.challenge-split-text h2 { font-size: 34px; margin: 10px 0 20px; letter-spacing: -0.02em; }
+.challenge-split-text p { font-size: 17px; color: var(--ink); line-height: 1.6; margin: 14px 0; max-width: 480px; }
+.challenge-split-text .btn-row { margin-top: 26px; }
+.challenge-split-media img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px;
+  box-shadow: var(--card-shadow); display: block;
+}
+
+/* Me: quiet, narrow, unadorned */
+.challenge-section--me { padding: 100px 0; }
+.challenge-section--me h2 { font-size: 32px; margin: 10px 0 20px; letter-spacing: -0.02em; }
+.challenge-section--me p { font-size: 18px; color: var(--ink); line-height: 1.65; margin: 16px 0; max-width: 620px; }
+.challenge-section--me .btn-row { margin-top: 28px; }
+
+.challenge-secondary-link { margin-top: 18px; }
+.challenge-secondary-link a { font-size: 14.5px; color: var(--slate); border-bottom: 1px solid var(--line); padding-bottom: 1px; }
+.challenge-secondary-link a:hover { color: var(--brass-dark); border-color: var(--brass-dark); }
+
+@media (max-width: 900px) {
+  .challenge-split { grid-template-columns: 1fr; gap: 32px; }
+  .challenge-split-media { order: -1; }
+  .challenge-split-media img { aspect-ratio: 16 / 9; }
+}
+@media (max-width: 640px) {
+  .challenge-section { padding: 56px 0; }
+  .challenge-section--organization { padding: 48px 0 56px; }
+  .challenge-section--me { padding: 64px 0; }
+  .challenge-head h2, .challenge-split-text h2, .challenge-section--me h2 { font-size: 27px; }
+  .challenge-how { margin-top: 36px; }
+  .challenge-proof { margin-top: 36px; }
+  .case--compact .num { font-size: 36px; }
+}
+
 /* Ways to work together */
 .offer-icon { width: 42px; height: 42px; color: var(--brass-dark); margin-bottom: 14px; }
 .offer-icon svg { width: 100%; height: 100%; display: block; }
