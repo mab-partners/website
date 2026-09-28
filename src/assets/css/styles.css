@@ -194,7 +194,8 @@ section { padding: 76px 0; }
 .site-header--overlay:not(.is-scrolled) .nav-toggle {
   border-color: rgba(251,249,244,0.4); color: #FBF9F4;
 }
-/* Desktop pre-scroll: collapse the full menu behind "Menu", leaving only the CTA visible.
+/* Desktop pre-scroll: just the logo and "Talk to us" — no menu trigger, nothing
+   floating mid-header. The full nav appears as soon as the visitor scrolls.
    Scoped to desktop because on mobile the nav-cta lives inside the solid white panel
    that the toggle opens, where it must keep its normal dark styling. */
 @media (min-width: 901px) {
@@ -202,8 +203,6 @@ section { padding: 76px 0; }
   .site-header--overlay:not(.is-scrolled) .nav-item--dropdown {
     display: none;
   }
-  .site-header--overlay:not(.is-scrolled) .nav-links { gap: 18px; }
-  .site-header--overlay:not(.is-scrolled) .nav-toggle { display: inline-block; }
   .site-header--overlay:not(.is-scrolled) .nav-links .nav-cta {
     border-color: rgba(251,249,244,0.55); color: #FBF9F4;
   }

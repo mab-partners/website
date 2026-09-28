@@ -41,17 +41,17 @@
   });
 })();
 
-// Homepage only: header starts transparent over the hero, becomes solid once
-// the visitor has scrolled through most of it.
+// Homepage only: header starts transparent over the hero, becomes solid as
+// soon as the visitor starts scrolling.
 (function () {
   var header = document.querySelector('.site-header--overlay');
   var hero = document.querySelector('.diagnostic-hero');
   if (!header || !hero) return;
 
+  var switchPoint = 24;
   var ticking = false;
   function apply() {
     ticking = false;
-    var switchPoint = hero.offsetHeight - 96;
     header.classList.toggle('is-scrolled', window.scrollY > switchPoint);
   }
   function onScroll() {
