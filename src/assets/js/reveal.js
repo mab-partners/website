@@ -14,7 +14,7 @@
     '.approach-body', '.case-hook', '.offer-feature',
     '.retreat-grid', '.img-placeholder.wide',
     '.org-moment--challenge', '.org-model-visual', '.org-model-steps', '.org-moment--proof',
-    '.challenge-split', '.challenge-section--me'
+    '.challenge-split'
   ].join(',');
 
   var els = Array.prototype.slice.call(document.querySelectorAll(SELECTOR));
