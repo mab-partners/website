@@ -23,6 +23,12 @@ export default function (eleventyConfig) {
   // Current year, for the footer.
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
+  // True when the current page URL falls under one of a nav dropdown's links
+  // (so the "Insights" toggle can show the same current-page treatment as a link).
+  eleventyConfig.addFilter("dropdownIsCurrent", (dropdown, pageUrl) =>
+    (dropdown || []).some((sub) => pageUrl.indexOf(sub.url) === 0)
+  );
+
   return {
     dir: {
       input: "src",

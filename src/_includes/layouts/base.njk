@@ -41,16 +41,30 @@
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <header class="site-header">
+  <header class="site-header{% if heroOverlay %} site-header--overlay{% endif %}">
     <div class="wrap">
       <a class="brand" href="/" aria-label="mab Partners — home">
-        <img src="{{ '/assets/img/mab-logo.png' | bust }}" alt="mab — managing across borders" width="1100" height="657">
+        <span class="brand-mark">
+          <img src="{{ '/assets/img/mab-logo.png' | bust }}" alt="mab — managing across borders" width="1100" height="657">
+        </span>
       </a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">Menu</button>
       <nav class="nav-links" id="nav-links" aria-label="Primary">
         {%- for item in site.nav %}
+        {%- if item.dropdown %}
+        <div class="nav-item nav-item--dropdown">
+          <button type="button" class="nav-dropdown-toggle{% if item.dropdown | dropdownIsCurrent(page.url) %} is-current{% endif %}" aria-expanded="false" aria-haspopup="true">{{ item.text }}</button>
+          <div class="nav-dropdown-menu">
+            {%- for sub in item.dropdown %}
+            {%- set subCurrent = page.url.indexOf(sub.url) == 0 %}
+            <a href="{{ sub.url }}"{% if subCurrent %} aria-current="page"{% endif %}>{{ sub.text }}</a>
+            {%- endfor %}
+          </div>
+        </div>
+        {%- else %}
         {%- set isCurrent = page.url == item.url or (item.url != "/" and page.url.indexOf(item.url) == 0) %}
         <a href="{{ item.url }}"{% if isCurrent %} aria-current="page"{% endif %}>{{ item.text }}</a>
+        {%- endif %}
         {%- endfor %}
         <a class="nav-cta" href="{{ site.calendly }}">Talk to us</a>
       </nav>

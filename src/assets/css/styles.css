@@ -104,27 +104,52 @@ section { padding: 76px 0; }
 .site-header { border-bottom: 1px solid var(--line); background: var(--paper); }
 .site-header .wrap {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: 14px; padding-bottom: 14px; gap: 24px;
+  padding-top: 11px; padding-bottom: 11px; gap: 24px;
 }
 .brand { display: inline-flex; align-items: center; flex: none; }
-.brand img { height: 50px; width: auto; display: block; }
-@media (max-width: 640px) { .brand img { height: 40px; } }
+.brand-mark { display: block; overflow: hidden; }
+.brand-mark img { height: 58px; width: auto; display: block; }
+@media (max-width: 640px) { .brand-mark img { height: 46px; } }
 
-.nav-links { display: flex; align-items: center; gap: 28px; font-size: 14.5px; color: var(--slate); }
-.nav-links a { display: inline-flex; align-items: center; line-height: 1.2; }
-.nav-links a:not(.nav-cta) {
+.nav-links { display: flex; align-items: center; gap: 32px; font-size: 15px; color: var(--slate); font-weight: 500; letter-spacing: 0.1px; }
+.nav-links a, .nav-dropdown-toggle { display: inline-flex; align-items: center; line-height: 1.2; }
+.nav-links a:not(.nav-cta), .nav-dropdown-toggle {
   padding: 6px 0;
   border-bottom: 2px solid transparent;
 }
 .nav-links a:not(.nav-cta):hover,
-.nav-links a:not(.nav-cta)[aria-current="page"] {
+.nav-links a:not(.nav-cta)[aria-current="page"],
+.nav-dropdown-toggle:hover,
+.nav-dropdown-toggle.is-current {
   color: var(--ink); border-bottom-color: var(--brass);
 }
 .nav-links .nav-cta {
-  font-size: 14px; font-weight: 500; padding: 9px 18px;
+  font-size: 14.5px; font-weight: 500; padding: 9px 18px;
   border: 1px solid var(--ink); border-radius: 3px; white-space: nowrap; color: var(--ink);
 }
 .nav-links .nav-cta:hover { background: var(--ink); color: var(--white); }
+
+/* "Insights" dropdown (Book + Podcast) */
+.nav-item--dropdown { position: relative; }
+.nav-dropdown-toggle {
+  font: inherit; font-size: inherit; font-weight: inherit; letter-spacing: inherit;
+  background: none; border: none; cursor: pointer; color: inherit; gap: 5px;
+}
+.nav-dropdown-toggle::after {
+  content: ''; width: 6px; height: 6px; margin-top: -3px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg); transition: transform .15s ease;
+}
+.nav-item--dropdown.is-open .nav-dropdown-toggle::after { transform: rotate(-135deg); margin-top: 2px; }
+.nav-dropdown-menu {
+  display: none; flex-direction: column;
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%); margin-top: 10px;
+  min-width: 160px; padding: 8px; background: var(--paper);
+  border: 1px solid var(--line); border-radius: 6px; box-shadow: var(--card-shadow); z-index: 60;
+}
+.nav-item--dropdown.is-open .nav-dropdown-menu { display: flex; }
+.nav-dropdown-menu a { padding: 9px 10px; border-radius: 4px; font-size: 14.5px; font-weight: 500; color: var(--slate); }
+.nav-dropdown-menu a:hover, .nav-dropdown-menu a[aria-current="page"] { background: #F7F5F0; color: var(--ink); }
 
 .nav-toggle {
   display: none; background: none; border: 1px solid var(--line); border-radius: 3px;
@@ -142,12 +167,68 @@ section { padding: 76px 0; }
   .site-header.nav-open .nav-links { display: flex; }
   .nav-links a:not(.nav-cta) { padding: 13px 0; border-bottom: 1px solid var(--line); width: 100%; }
   .nav-links .nav-cta { text-align: center; justify-content: center; margin-top: 14px; }
+  .nav-item--dropdown { width: 100%; }
+  .nav-dropdown-toggle { width: 100%; justify-content: space-between; padding: 13px 0; border-bottom: 1px solid var(--line); }
+  .nav-dropdown-menu {
+    position: static; transform: none; display: none; flex-direction: column;
+    margin: 0; padding: 0 0 4px 14px; background: none; border: none; box-shadow: none;
+  }
+  .nav-item--dropdown.is-open .nav-dropdown-menu { display: flex; }
+  .nav-dropdown-menu a { padding: 11px 0; border-radius: 0; border-bottom: 1px solid var(--line); }
 }
 
-/* Hero: interactive diagnostic — dark, serif, editorial ------------------ */
+/* Homepage: transparent header floating over the hero, solid once scrolled past it */
+.site-header--overlay {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 70;
+  transition: background-color .3s ease, border-color .3s ease;
+}
+.site-header--overlay:not(.is-scrolled) {
+  background: transparent; border-bottom-color: transparent;
+}
+.site-header--overlay:not(.is-scrolled) .brand-mark {
+  height: 68px; transition: height .3s ease;
+}
+.site-header--overlay:not(.is-scrolled) .brand-mark img {
+  height: 107px; margin-top: -14.7px; transition: height .3s ease, margin-top .3s ease;
+}
+.site-header--overlay:not(.is-scrolled) .nav-toggle {
+  border-color: rgba(251,249,244,0.4); color: #FBF9F4;
+}
+/* Desktop pre-scroll: collapse the full menu behind "Menu", leaving only the CTA visible.
+   Scoped to desktop because on mobile the nav-cta lives inside the solid white panel
+   that the toggle opens, where it must keep its normal dark styling. */
+@media (min-width: 901px) {
+  .site-header--overlay:not(.is-scrolled) .nav-links a:not(.nav-cta),
+  .site-header--overlay:not(.is-scrolled) .nav-item--dropdown {
+    display: none;
+  }
+  .site-header--overlay:not(.is-scrolled) .nav-links { gap: 18px; }
+  .site-header--overlay:not(.is-scrolled) .nav-toggle { display: inline-block; }
+  .site-header--overlay:not(.is-scrolled) .nav-links .nav-cta {
+    border-color: rgba(251,249,244,0.55); color: #FBF9F4;
+  }
+  .site-header--overlay:not(.is-scrolled) .nav-links .nav-cta:hover {
+    background: #FBF9F4; color: var(--ink);
+  }
+}
+@media (max-width: 640px) {
+  .site-header--overlay:not(.is-scrolled) .brand-mark { height: 52px; }
+  .site-header--overlay:not(.is-scrolled) .brand-mark img { height: 82px; margin-top: -11.2px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header--overlay,
+  .site-header--overlay .brand-mark,
+  .site-header--overlay .brand-mark img {
+    transition: none;
+  }
+}
+
+/* Hero: interactive diagnostic — dark, serif, editorial ------------------
+   padding-top clears the transparent floating header (see .site-header--overlay);
+   the header itself reserves no layout space, so this hero owns that room instead. */
 .diagnostic-hero {
   position: relative; overflow: hidden; background: var(--ink-deep);
-  padding-top: 56px; padding-bottom: 44px;
+  padding-top: 152px; padding-bottom: 44px;
 }
 .diagnostic-hero-bg { position: absolute; inset: 0; z-index: 0; }
 .diagnostic-hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; display: block; }
@@ -161,10 +242,13 @@ section { padding: 76px 0; }
 }
 .diagnostic-hero > .wrap { position: relative; z-index: 1; }
 
-/* Cards / question steps: headline centered up top, tiles lined up at the bottom */
+/* Cards / question steps: headline centered up top, tiles lined up at the bottom.
+   min-height stretches toward a full viewport (minus the header's reserved room)
+   so the extra space becomes more visible photograph between headline and tiles,
+   without changing the size of either. */
 .diag-step--cards, .diag-step--question {
   display: flex; flex-direction: column; align-items: center; justify-content: space-between;
-  min-height: 600px; text-align: center;
+  min-height: max(580px, calc(100vh - 200px)); text-align: center;
 }
 .diag-hero-top { max-width: 640px; margin: 0 auto; }
 
@@ -264,12 +348,14 @@ section { padding: 76px 0; }
 .diag-noscript h1 { font-family: var(--font-serif); font-weight: 400; font-size: 48px; letter-spacing: -0.01em; line-height: 1.16; margin-bottom: 28px; color: #FBF9F4; }
 
 @media (max-width: 900px) {
+  .diagnostic-hero { padding-top: 116px; }
   .diag-result { grid-template-columns: 1fr; gap: 36px; }
   .diagnostic-hero h1 { max-width: 100%; }
-  .diag-step--cards, .diag-step--question { min-height: 680px; }
+  .diag-step--cards, .diag-step--question { min-height: max(640px, calc(100vh - 160px)); }
   .diag-tiles-row { grid-template-columns: repeat(2, minmax(0, 240px)); gap: 16px; }
 }
 @media (max-width: 640px) {
+  .diagnostic-hero { padding-top: 96px; }
   .diagnostic-hero h1, .diag-noscript h1 { font-size: 32px; }
   .diag-result h1 { font-size: 28px; }
   .diag-step--cards, .diag-step--question { min-height: 0; gap: 32px; }
