@@ -11,9 +11,10 @@
     '.price-row', '.book-hero', '.fact-grid', '.logo-strip', '.author-row',
     '.coach-grid', '.embed', '.contact-form', '.quote-band-inner', '.band-split',
     '.value-list', '.retreat-hero-img', '.photo-strip', '.pull-quote', '.stat-callout',
-    '.approach-body', '.approach-visual', '.approach-steps', '.case', '.case-hook', '.offer-feature',
+    '.approach-body', '.case-hook', '.offer-feature',
     '.retreat-grid', '.img-placeholder.wide',
-    '.challenge-head', '.challenge-how', '.challenge-proof', '.challenge-cta', '.challenge-split', '.challenge-section--me'
+    '.org-moment--challenge', '.org-model-visual', '.org-model-steps', '.org-moment--proof',
+    '.challenge-split', '.challenge-section--me'
   ].join(',');
 
   var els = Array.prototype.slice.call(document.querySelectorAll(SELECTOR));
