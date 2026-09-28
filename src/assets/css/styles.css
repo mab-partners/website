@@ -26,6 +26,7 @@
   --font-serif: 'Fraunces', Georgia, 'Times New Roman', serif;
 
   --wrap: 1120px;
+  --wrap-wide: 1280px;
   --pad: 32px;
 }
 
@@ -227,7 +228,7 @@ section { padding: 76px 0; }
    the header itself reserves no layout space, so this hero owns that room instead. */
 .diagnostic-hero {
   position: relative; overflow: hidden; background: var(--ink-deep);
-  padding-top: 152px; padding-bottom: 44px;
+  padding-top: 152px; padding-bottom: 64px;
 }
 .diagnostic-hero-bg { position: absolute; inset: 0; z-index: 0; }
 .diagnostic-hero-bg img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 52%; display: block; }
@@ -241,12 +242,13 @@ section { padding: 76px 0; }
 }
 .diagnostic-hero > .wrap { position: relative; z-index: 1; }
 
-/* Cards / question steps: headline centered up top, tiles lined up at the bottom.
-   min-height stretches toward a full viewport (minus the header's reserved room)
-   so the extra space becomes more visible photograph between headline and tiles,
-   without changing the size of either. */
+/* Cards / question steps: headline anchored near the top, tiles docked near
+   the bottom as the hero's closing gateway into the rest of the page. The
+   min-height stretches toward a full viewport (minus the header's reserved
+   room), and space-between lets that extra height become open photograph
+   between the headline and the tile row, rather than squeezing them together. */
 .diag-step--cards, .diag-step--question {
-  display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 64px;
+  display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 64px;
   min-height: max(580px, calc(100vh - 200px)); text-align: center;
 }
 .diag-hero-top { max-width: 640px; margin: 0 auto; }
@@ -798,7 +800,7 @@ section[id] { scroll-margin-top: 28px; }
 
 /* Homepage challenge sections: Organization / Team / Me ---------------------- */
 .challenge-section { padding: 88px 0; }
-.wrap--wide { max-width: 1280px; }
+.wrap--wide { max-width: var(--wrap-wide); }
 
 /* Organization: a dark, high-authority chapter told in three visual moments.
    The background starts at the hero's own ink-deep tone and eases into the
@@ -842,11 +844,13 @@ section[id] { scroll-margin-top: 28px; }
 .btn-primary--on-dark { background: #FBF9F4; color: var(--ink); border-color: #FBF9F4; white-space: nowrap; }
 .btn-primary--on-dark:hover { background: var(--white); box-shadow: 0 10px 22px -12px rgba(0,0,0,0.35); }
 
-/* Team & Me: text alongside a real photo, sharing one grid (same .wrap, same
-   column proportions) so the two sections read as built on the same system.
-   The photo bleeds to the outer viewport edge instead of sitting in a
-   rounded, shadowed "card" -- it stretches to the row's full height and
-   escapes the wrap's own padding via a negative margin on its outer side. */
+/* Team & Me/Leadership: two immersive chapters that continue straight on from
+   Organization -- same wrap--wide left edge, same 92px gold connector thread
+   marking the hand-off, same "photo bleeds to the outer edge, not a card"
+   language. Each chapter then gets its own personality: Team stays on the
+   light paper surface (collective, human); Leadership drops to a warm dark
+   ground of its own (distinct from Organization's cool navy) for a more
+   personal, cinematic register. */
 .challenge-split { display: grid; grid-template-columns: 1fr 0.9fr; gap: 56px; align-items: stretch; }
 .challenge-split-text { display: flex; flex-direction: column; justify-content: center; }
 .challenge-split-text h2 { font-size: 34px; margin: 10px 0 20px; letter-spacing: -0.02em; }
@@ -854,32 +858,55 @@ section[id] { scroll-margin-top: 28px; }
 .challenge-split-text .btn-row { margin-top: 26px; }
 .challenge-split-media {
   min-height: 340px;
-  margin-right: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + var(--pad)));
+  margin-right: calc(-1 * (max(0px, (100vw - var(--wrap-wide)) / 2) + var(--pad)));
 }
 .challenge-split-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-/* Me: the mirrored variant -- photo on the outer left, text on the right,
-   and (desktop only) the photo also bleeds vertically past the section's
-   own padding, so it reads as a deliberately larger, more personal moment
-   than Team's. */
 .challenge-split--reverse { grid-template-columns: 0.9fr 1fr; }
 .challenge-split--reverse .challenge-split-media {
   margin-right: 0;
-  margin-left: calc(-1 * (max(0px, (100vw - var(--wrap)) / 2) + var(--pad)));
+  margin-left: calc(-1 * (max(0px, (100vw - var(--wrap-wide)) / 2) + var(--pad)));
 }
-.challenge-section--me { padding: 100px 0; }
-.challenge-section--me .challenge-split--reverse .challenge-split-media {
-  margin-top: -100px; margin-bottom: -100px;
-}
-.challenge-section--me .challenge-split-text h2 { font-size: 32px; }
-.challenge-section--me .challenge-split-text p { font-size: 18px; line-height: 1.65; max-width: 460px; }
-/* Bias the crop toward the upper frame so the raised arm and open sky
-   (the point of this photo) survive at any column width. */
-.challenge-section--me .challenge-split-media img { object-position: 50% 18%; }
 
 .challenge-secondary-link { margin-top: 18px; }
 .challenge-secondary-link a { font-size: 14.5px; color: var(--slate); border-bottom: 1px solid var(--line); padding-bottom: 1px; }
 .challenge-secondary-link a:hover { color: var(--brass-dark); border-color: var(--brass-dark); }
+
+/* The connector thread, reused at the top of every immersive chapter after
+   the hero (Organization already has its own copy of this rule). */
+.challenge-section--team, .challenge-section--me { position: relative; }
+.challenge-section--team::before, .challenge-section--me::before {
+  content: ''; position: absolute; top: -46px; left: 50%; width: 1px; height: 92px;
+  background: linear-gradient(to bottom, transparent, var(--brass-light) 45%, var(--brass-light) 55%, transparent);
+  opacity: 0.55; pointer-events: none;
+}
+
+/* Team: collective, dynamic -- the photo takes the larger share of the row
+   and bleeds on all three outer edges (right + top + bottom), so the section
+   reads as built around the photograph rather than around a text block. */
+.challenge-section--team { padding: 72px 0; }
+.challenge-section--team .challenge-split { grid-template-columns: 1fr 1.3fr; min-height: max(600px, 78vh); }
+.challenge-section--team .challenge-split-media { margin-top: -72px; margin-bottom: -72px; }
+.challenge-section--team .eyebrow { font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 600; }
+.challenge-section--team .challenge-split-text h2 { font-size: 46px; line-height: 1.08; margin: 16px 0 24px; max-width: 460px; }
+.challenge-section--team .challenge-split-text p { font-size: 17.5px; line-height: 1.68; }
+
+/* Leadership ("Me"): personal, expansive -- a warm dark ground of its own,
+   the photo takes almost two-thirds of the row and bleeds vertically past
+   the section's own padding for real scale, and the crop stays biased
+   toward the top so the raised arm and open sky are never at risk. */
+.challenge-section--me {
+  background: #1B140F; color: #FBF9F4; padding: 80px 0;
+}
+.challenge-section--me .challenge-split { grid-template-columns: 1.5fr 1fr; min-height: max(600px, 80vh); }
+.challenge-section--me .challenge-split--reverse .challenge-split-media {
+  margin-top: -80px; margin-bottom: -80px;
+}
+.challenge-section--me .challenge-split-media img { object-position: 50% 18%; }
+.challenge-section--me .eyebrow { color: var(--brass-light); font-size: 15px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 600; }
+.challenge-section--me .challenge-split-text h2 { font-size: 46px; line-height: 1.08; margin: 16px 0 24px; color: #FBF9F4; max-width: 480px; }
+.challenge-section--me .challenge-split-text p { font-size: 18px; line-height: 1.68; color: rgba(251,249,244,0.82); max-width: 460px; }
+.challenge-section--me .challenge-secondary-link a { color: rgba(251,249,244,0.65); border-bottom-color: rgba(251,249,244,0.32); }
+.challenge-section--me .challenge-secondary-link a:hover { color: var(--brass-light); border-bottom-color: var(--brass-light); }
 
 @media (max-width: 900px) {
   .challenge-split, .challenge-split--reverse { grid-template-columns: 1fr; gap: 32px; }
@@ -887,7 +914,14 @@ section[id] { scroll-margin-top: 28px; }
     order: -1; min-height: 0; aspect-ratio: 16 / 9;
     margin-left: calc(-1 * var(--pad)); margin-right: calc(-1 * var(--pad));
   }
-  .challenge-section--me .challenge-split--reverse .challenge-split-media { margin-top: 0; margin-bottom: 0; aspect-ratio: 3 / 4; }
+  .challenge-section--team .challenge-split,
+  .challenge-section--me .challenge-split { min-height: 0; }
+  .challenge-section--team .challenge-split-media { margin-top: 0; margin-bottom: 0; }
+  .challenge-section--team .challenge-split-text h2,
+  .challenge-section--me .challenge-split-text h2 { font-size: 36px; }
+  .challenge-section--me .challenge-split--reverse .challenge-split-media {
+    margin-top: 0; margin-bottom: 0; aspect-ratio: 3 / 4;
+  }
   .org-model-steps { position: static; display: flex; flex-direction: column; gap: 20px; align-self: auto; }
   .org-model-steps .step { position: static; }
 }
