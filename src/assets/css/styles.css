@@ -280,35 +280,27 @@ section { padding: 76px 0; }
    Sized as substantial entry points (not small buttons) and grouped close to the headline
    above via the flex `gap` on .diag-step--cards, so headline + tiles read as one composition. */
 .diag-tiles-row {
-  display: grid; grid-template-columns: repeat(4, minmax(0, 232px)); gap: 22px;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 262px)); gap: 20px;
   justify-content: center; width: 100%;
 }
 .situation-tile {
-  --tilt: -1.1deg;
-  display: flex; flex-direction: column; justify-content: center; gap: 9px; text-align: left;
-  font: inherit; font-weight: 400; cursor: pointer; border: none;
-  background: rgba(11,17,29,0.74);
-  padding: 28px 26px; min-height: 140px;
-  clip-path: polygon(2% 6%, 100% 0%, 98% 94%, 0% 100%);
-  transform: rotate(var(--tilt));
-  filter: drop-shadow(0 0 0 rgba(217,196,138,0.22)) drop-shadow(0 14px 24px rgba(5,10,20,0.46));
-  transition: transform .18s ease, filter .18s ease, background .18s ease;
+  display: flex; flex-direction: column; justify-content: space-between; gap: 28px; text-align: left;
+  font: inherit; font-weight: 400; cursor: pointer; border: none; border-radius: 0;
+  background: rgba(11,17,29,0.86);
+  box-shadow: inset 0 2px 0 0 rgba(217,196,138,0), 0 16px 28px -10px rgba(5,10,20,0.5);
+  padding: 26px 28px 28px; min-height: 164px;
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
 }
 .situation-tile:hover {
-  background: rgba(26,35,54,0.88); transform: rotate(var(--tilt)) translateY(-5px);
-  filter: drop-shadow(0 0 0 rgba(217,196,138,0.4)) drop-shadow(0 20px 32px rgba(5,10,20,0.52));
+  background: rgba(24,33,52,0.9); transform: translateY(-4px);
+  box-shadow: inset 0 2px 0 0 rgba(217,196,138,0.85), 0 22px 34px -10px rgba(5,10,20,0.56);
 }
-
-.diag-tiles-row > .situation-tile:nth-child(1) { --tilt: -1.1deg; clip-path: polygon(2% 6%, 100% 0%, 98% 94%, 0% 100%); }
-.diag-tiles-row > .situation-tile:nth-child(2) { --tilt: 1.3deg; clip-path: polygon(0% 3%, 97% 0%, 100% 97%, 3% 100%); }
-.diag-tiles-row > .situation-tile:nth-child(3) { --tilt: 1deg; clip-path: polygon(3% 0%, 100% 5%, 97% 100%, 0% 95%); }
-.diag-tiles-row > .situation-tile:nth-child(4) { --tilt: -1.4deg; clip-path: polygon(0% 0%, 98% 4%, 100% 100%, 2% 96%); }
 
 .situation-tile-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 1.3px; text-transform: uppercase;
-  color: rgba(217,196,138,0.78);
+  font-size: 12px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(217,196,138,0.82);
 }
-.situation-tile-text { font-size: 18px; font-weight: 600; line-height: 1.28; color: #FBF9F4; letter-spacing: -0.01em; }
+.situation-tile-text { font-size: 22px; font-weight: 600; line-height: 1.24; color: #FBF9F4; letter-spacing: -0.012em; }
 
 .diag-skip { margin-top: 28px; }
 .diag-skip a { font-size: 13.5px; color: rgba(251,249,244,0.65); text-shadow: 0 2px 10px rgba(5,10,20,0.8); }
@@ -316,7 +308,7 @@ section { padding: 76px 0; }
 
 @media (prefers-reduced-motion: reduce) {
   .situation-tile { transition: none; }
-  .situation-tile:hover { transform: rotate(var(--tilt)); }
+  .situation-tile:hover { transform: none; }
 }
 
 .diag-result { display: grid; grid-template-columns: 1.12fr 0.78fr; gap: 56px; align-items: center; }
@@ -714,6 +706,51 @@ section[id] { scroll-margin-top: 28px; }
 @media (max-width: 760px) { .fact-grid { grid-template-columns: 1fr 1fr; } }
 
 /* CTA band ---------------------------------------------------------------- */
+/* Final chapter: client proof and the closing question as ONE composition on
+   the brand navy -- the question dominates, the logos sit beside it as quiet,
+   monochrome evidence. The thread (same motif as the chapter breaks above)
+   marks the hand-off from the people section, instead of a divider. */
+.final-cta {
+  position: relative; background: var(--ink); color: #FBF9F4; padding: 140px 0 128px;
+}
+.final-cta::before {
+  content: ''; position: absolute; top: -46px; left: 50%; width: 1px; height: 92px;
+  background: linear-gradient(to bottom, transparent, var(--brass-light) 45%, var(--brass-light) 55%, transparent);
+  opacity: 0.55; pointer-events: none;
+}
+.final-cta-grid { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr); column-gap: 88px; align-items: end; }
+.final-cta h2 { font-size: 54px; line-height: 1.06; letter-spacing: -0.025em; color: #FBF9F4; max-width: 700px; }
+.final-cta-main > p { font-size: 18px; line-height: 1.65; color: rgba(251,249,244,0.78); margin-top: 28px; max-width: 520px; }
+.final-cta .btn-row { margin-top: 40px; }
+.final-cta .btn-secondary { color: rgba(251,249,244,0.82); border-bottom-color: rgba(251,249,244,0.38); }
+.final-cta .btn-secondary:hover { color: var(--brass-light); border-bottom-color: var(--brass-light); }
+.final-cta-proof .label {
+  font-size: 12.5px; letter-spacing: 0.6px; text-transform: uppercase; font-weight: 600;
+  color: rgba(251,249,244,0.5); margin-bottom: 30px;
+}
+.final-logos { display: flex; flex-wrap: wrap; align-items: center; gap: 34px 38px; }
+/* Every mark is inverted to light and blended with "screen": dark artwork
+   becomes quiet white-grey, and the opaque white grounds several of these
+   files ship with turn black and disappear into the navy instead of boxing. */
+.final-logos img {
+  width: auto; max-width: 100%; opacity: 0.6; filter: grayscale(1) invert(1) contrast(1.15);
+  mix-blend-mode: screen; transition: opacity .25s ease;
+}
+.final-logos img:hover { opacity: 0.95; }
+.final-logos .logo--wide { height: 28px; }
+.final-logos .logo--mid { height: 34px; }
+.final-logos .logo--square { height: 42px; }
+@media (max-width: 900px) {
+  .final-cta { padding: 96px 0 88px; }
+  .final-cta-grid { grid-template-columns: 1fr; row-gap: 72px; }
+  .final-cta h2 { font-size: 40px; }
+}
+@media (max-width: 640px) {
+  .final-cta { padding: 72px 0 72px; }
+  .final-cta h2 { font-size: 32px; }
+  .final-logos { gap: 28px 20px; }
+}
+
 .cta-band { padding: 80px 0; }
 .cta-band h2 { font-size: 33px; max-width: 560px; }
 .cta-band p { font-size: 17px; color: var(--slate); margin-top: 16px; max-width: 500px; }
@@ -833,12 +870,21 @@ section[id] { scroll-margin-top: 28px; }
 .org-model-steps .step--tier3 { top: 54%; }
 
 .org-moment--proof { margin-top: 96px; }
-.org-impact { display: grid; grid-template-columns: auto 1fr; gap: 32px 64px; align-items: center; margin-top: 24px; }
+/* One deliberate two-column composition: content / supporting note / CTA,
+   with both columns sharing the same three rows so the CTAs sit on one line. */
+.org-impact {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); grid-template-rows: auto auto;
+  column-gap: 72px; row-gap: 40px; align-items: start; margin-top: 24px;
+}
+.org-impact-figure { grid-column: 1; grid-row: 1; }
+.org-impact-body { grid-column: 2; grid-row: 1; padding-top: 3px; }
+.org-impact-cta { margin-top: 0; grid-row: 2; }
+.org-impact-cta--strategy { grid-column: 1; }
+.org-impact-cta--case { grid-column: 2; }
 .org-impact-num { font-family: var(--font-display); font-weight: 700; font-size: 84px; letter-spacing: -0.03em; line-height: 1; color: #FBF9F4; white-space: nowrap; }
 .org-impact-num span { color: #7FB0E0; padding: 0 6px; }
-.org-impact-note { font-size: 14px; color: rgba(251,249,244,0.55); margin-top: 16px; max-width: 260px; }
-.org-impact-figure .btn-row { margin-top: 22px; }
-.org-impact-body p { font-size: 17px; color: rgba(251,249,244,0.82); line-height: 1.6; margin: 0 0 14px; max-width: 460px; }
+.org-impact-note { font-size: 14px; color: rgba(251,249,244,0.55); margin-top: 16px; max-width: 300px; }
+.org-impact-body p { font-size: 17px; color: rgba(251,249,244,0.82); line-height: 1.6; margin: 0 0 14px; max-width: 560px; }
 .org-impact-source { font-size: 14px; color: rgba(251,249,244,0.55); }
 
 .btn-primary--on-dark { background: #FBF9F4; color: var(--ink); border-color: #FBF9F4; white-space: nowrap; }
@@ -915,13 +961,19 @@ section[id] { scroll-margin-top: 28px; }
     margin-left: calc(-1 * var(--pad)); margin-right: calc(-1 * var(--pad));
   }
   .challenge-section--team .challenge-split,
-  .challenge-section--me .challenge-split { min-height: 0; }
+  .challenge-section--me .challenge-split { grid-template-columns: 1fr; min-height: 0; }
   .challenge-section--team .challenge-split-media { margin-top: 0; margin-bottom: 0; }
   .challenge-section--team .challenge-split-text h2,
   .challenge-section--me .challenge-split-text h2 { font-size: 36px; }
   .challenge-section--me .challenge-split--reverse .challenge-split-media {
     margin-top: 0; margin-bottom: 0; aspect-ratio: 3 / 4;
   }
+  .org-impact { grid-template-columns: 1fr; grid-template-rows: none; row-gap: 22px; }
+  .org-impact-figure, .org-impact-body, .org-impact-cta--strategy, .org-impact-cta--case { grid-column: 1; grid-row: auto; }
+  .org-impact-figure { order: 1; }
+  .org-impact-cta--strategy { order: 2; }
+  .org-impact-body { order: 3; padding-top: 14px; }
+  .org-impact-cta--case { order: 4; }
   .org-model-steps { position: static; display: flex; flex-direction: column; gap: 20px; align-self: auto; }
   .org-model-steps .step { position: static; }
 }
@@ -934,7 +986,6 @@ section[id] { scroll-margin-top: 28px; }
   .org-moment--model { margin-top: 56px; }
   .org-moment--proof { margin-top: 64px; }
   .org-model { gap: 36px; }
-  .org-impact { grid-template-columns: 1fr; gap: 20px; }
   .org-impact-num { font-size: 52px; }
   .org-impact-note { max-width: none; }
 }
