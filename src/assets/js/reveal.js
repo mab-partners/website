@@ -16,7 +16,7 @@
     '.org-moment--challenge', '.org-model-visual', '.org-model-steps', '.org-moment--proof',
     '.challenge-split',
     '.sas-why-grid', '.sas-energy', '.sas-track', '.sas-how2-head', '.sas-what2-grid',
-    '.sas-more', '.sas-cmp-head', '.big-result', '.pricing-grid', '.sas-final-grid'
+    '.sas-more', '.sas-cmp-head', '.big-result', '.pricing-grid', '.sas-final-grid', '.fit-intro'
   ].join(',');
 
   var els = Array.prototype.slice.call(document.querySelectorAll(SELECTOR));

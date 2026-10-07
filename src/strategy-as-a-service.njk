@@ -44,9 +44,9 @@ description: "Most strategy engagements fail for a predictable reason: they stop
     <div class="sas-localnav-links">
       <a href="#why">Why</a>
       <a href="#how">How</a>
-      <a href="#what">What</a>
       <a href="#compare">Compare</a>
       <a href="#results">Results</a>
+      <a href="#fit">Fit check</a>
       <a href="/strategy-as-a-service/pricing/">Pricing</a>
     </div>
     <a class="sas-localnav-cta" href="{{ site.calendly }}">Book a call</a>
@@ -166,52 +166,6 @@ description: "Most strategy engagements fail for a predictable reason: they stop
   </div>
 </section>
 
-{# --------------------------------------------------------------- WHAT --- #}
-{# One message, three numbers, three typical missions. Everything else is
-   one click away in the two disclosures underneath. #}
-<section id="what" class="sas-what2">
-  <div class="wrap wrap--wide">
-    <div class="sas-what2-grid">
-      <div class="sas-what2-copy">
-        <div class="eyebrow">What</div>
-        <h2>One critical mission. Delivered.</h2>
-        <p>For the change a handful of quick actions won&rsquo;t solve &mdash; and the day-to-day can&rsquo;t carry.</p>
-        <div class="mission-chips" aria-label="Typical missions">
-          <span class="mission-chips-label">Typical missions</span>
-          <span class="mission-chip">Build a commercial engine</span>
-          <span class="mission-chip">Evolve the value proposition</span>
-          <span class="mission-chip">Change ways of working</span>
-        </div>
-      </div>
-      <dl class="sas-what2-facts">
-        <div><dt>1</dt><dd>mission, with a clear goal and end date</dd></div>
-        <div><dt>8&ndash;12</dt><dd>of your people, with an executive sponsor</dd></div>
-        <div><dt>12&ndash;18</dt><dd>months &mdash; within one leadership tenure</dd></div>
-      </dl>
-    </div>
-
-    <div class="sas-more">
-      <details class="sas-more-item">
-        <summary>What&rsquo;s included</summary>
-        <ul>
-          <li>A complete strategy deck, built with your core team</li>
-          <li>Weekly facilitation through to the finish line</li>
-          <li>A visibly more efficient, more aligned team</li>
-          <li>Organizational learning that outlasts the original issue</li>
-        </ul>
-      </details>
-      <details class="sas-more-item">
-        <summary>Is it a fit for us?</summary>
-        <p>We&rsquo;ve applied it at companies from $25M to $2B+ in revenue, and to divisions of much larger ones. It doesn&rsquo;t replace your team &mdash; it adds the outside perspective that brings more commitment and ownership to work already underway.</p>
-      </details>
-      <details class="sas-more-item">
-        <summary>Why 12&ndash;18 months?</summary>
-        <p>Twelve months is the minimum for a change that sticks. The more it touches daily habits, not just priorities, the closer it gets to eighteen.</p>
-      </details>
-    </div>
-  </div>
-</section>
-
 {# ------------------------------------------------- THE COMPARISON ------ #}
 {# Core message in one line; each row then builds on scroll: the old way is
    struck through, the new way lands. #}
@@ -253,6 +207,13 @@ description: "Most strategy engagements fail for a predictable reason: they stop
         <span role="cell" class="cmp-new">Adapts as you go</span>
       </div>
     </div>
+    <div class="cmp-more">
+      <button class="cmp-more-btn" type="button" data-dialog-open="engagement">
+        <span class="cmp-more-kicker">The engagement at a glance</span>
+        <span class="cmp-more-title">What exactly do you get? <span aria-hidden="true">&rarr;</span></span>
+      </button>
+      <a class="cmp-more-link" href="#fit">Not sure it fits? Take the 1-minute fit check</a>
+    </div>
   </div>
 </section>
 
@@ -280,6 +241,70 @@ description: "Most strategy engagements fail for a predictable reason: they stop
   </div>
 </section>
 
+{# ------------------------------------------------------- FIT CHECK --- #}
+<section id="fit" class="fit">
+  <div class="wrap wrap--wide fit-grid">
+    <div class="fit-intro">
+      <div class="eyebrow">Fit check</div>
+      <h2>Is Strategy as a Service a fit for you?</h2>
+      <p>Five quick questions, about a minute. You&rsquo;ll get an honest read &mdash; including when a different approach would serve you better.</p>
+    </div>
+    <div class="fit-card" data-fit>
+      <div class="fit-progress" aria-hidden="true"><span data-fit-bar></span></div>
+      <div class="fit-step-count" data-fit-count>Question 1 of 5</div>
+
+      <fieldset class="fit-q" data-q="0">
+        <legend>What kind of change are you facing?</legend>
+        <button type="button" data-v="2">Building or improving our commercial engine</button>
+        <button type="button" data-v="2">Evolving our value proposition &mdash; a new product, service or market</button>
+        <button type="button" data-v="2">Changing how we work &mdash; habits and structures holding us back</button>
+        <button type="button" data-v="0" data-flag="quick">A specific problem we could fix in a few weeks</button>
+      </fieldset>
+
+      <fieldset class="fit-q" data-q="1" hidden>
+        <legend>How long do you realistically expect it to take?</legend>
+        <button type="button" data-v="0" data-flag="quick">A few weeks</button>
+        <button type="button" data-v="1">A few months</button>
+        <button type="button" data-v="2">A year or more</button>
+      </fieldset>
+
+      <fieldset class="fit-q" data-q="2" hidden>
+        <legend>Is there a senior sponsor who will visibly back it &mdash; the owner, CEO or a division head?</legend>
+        <button type="button" data-v="2">Yes, and they&rsquo;re committed</button>
+        <button type="button" data-v="1">Probably, we&rsquo;d need to bring them in</button>
+        <button type="button" data-v="0" data-flag="sponsor">Not really</button>
+      </fieldset>
+
+      <fieldset class="fit-q" data-q="3" hidden>
+        <legend>Could you put a core team of 8&ndash;12 people on it, alongside their day jobs?</legend>
+        <button type="button" data-v="2">Yes</button>
+        <button type="button" data-v="1">A smaller group to start</button>
+        <button type="button" data-v="0" data-flag="team">It&rsquo;s really just me for now</button>
+      </fieldset>
+
+      <fieldset class="fit-q" data-q="4" hidden>
+        <legend>Roughly how large is your organization (or the unit this is for)?</legend>
+        <button type="button" data-v="1">Under $25M in revenue</button>
+        <button type="button" data-v="2">$25M &ndash; $2B</button>
+        <button type="button" data-v="2">Over $2B, or a division of a larger company</button>
+      </fieldset>
+
+      <div class="fit-result" data-fit-result hidden aria-live="polite">
+        <div class="fit-result-tag" data-r-tag></div>
+        <h3 data-r-title></h3>
+        <p data-r-text></p>
+        <div class="btn-row">
+          <a class="btn-primary btn-primary--brass" data-r-cta href="{{ site.calendly }}">Book a 20-minute call</a>
+          <a class="btn-secondary" data-r-alt href="/hbdi/" hidden>Explore team development (HBDI)</a>
+        </div>
+      </div>
+
+      <button class="fit-back" type="button" data-fit-back hidden>&larr; Back</button>
+      <button class="fit-restart" type="button" data-fit-restart hidden>Start over</button>
+    </div>
+  </div>
+</section>
+
 {# ------------------------------------------------------------- BOOK --- #}
 <section id="book" class="sas-final">
   <div class="wrap wrap--wide sas-final-grid">
@@ -298,5 +323,44 @@ description: "Most strategy engagements fail for a predictable reason: they stop
     </div>
   </div>
 </section>
+
+{# Engagement at a glance — opened from the comparison section #}
+<dialog class="sas-dialog" id="dialog-engagement" aria-labelledby="dlg-eng-title">
+  <div class="sas-dialog-inner">
+    <button class="sas-dialog-close" type="button" data-dialog-close aria-label="Close">&times;</button>
+    <div class="eyebrow">The engagement at a glance</div>
+    <h2 id="dlg-eng-title">One critical mission. Delivered.</h2>
+    <p class="sas-dialog-lead">For the change a handful of quick actions won&rsquo;t solve &mdash; and the day-to-day can&rsquo;t carry.</p>
+    <dl class="dlg-facts">
+      <div><dt>1</dt><dd>mission, with a clear goal and end date</dd></div>
+      <div><dt>8&ndash;12</dt><dd>of your people, with an executive sponsor</dd></div>
+      <div><dt>12&ndash;18</dt><dd>months &mdash; within one leadership tenure</dd></div>
+    </dl>
+    <div class="dlg-cols">
+      <div>
+        <h3>Typical missions</h3>
+        <ul>
+          <li>Build a commercial engine</li>
+          <li>Evolve the value proposition</li>
+          <li>Change ways of working</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What&rsquo;s included</h3>
+        <ul>
+          <li>A complete strategy deck, built with your core team</li>
+          <li>Weekly facilitation through to the finish line</li>
+          <li>A visibly more efficient, more aligned team</li>
+          <li>Organizational learning that outlasts the original issue</li>
+        </ul>
+      </div>
+    </div>
+    <p class="dlg-note"><strong>Why 12&ndash;18 months?</strong> Twelve months is the minimum for a change that sticks. The more it touches daily habits, not just priorities, the closer it gets to eighteen. We&rsquo;ve applied the model at companies from $25M to $2B+ in revenue, and to divisions of much larger ones.</p>
+    <div class="btn-row">
+      <a class="btn-primary" href="{{ site.calendly }}">Book a 20-minute call</a>
+      <a class="btn-secondary" href="/strategy-as-a-service/how-it-works/">Full deep dive</a>
+    </div>
+  </div>
+</dialog>
 
 <script src="{{ '/assets/js/sas.js' | bust }}" defer></script>
