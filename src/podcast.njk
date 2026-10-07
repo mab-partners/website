@@ -1,44 +1,147 @@
 ---
 title: The Pitch and The Catch
-description: "The Pitch and The Catch — a podcast hosted by Dirk Horn on leadership, risk, and purpose, in conversation with top executives. Watch every episode on YouTube."
+description: "The Pitch and The Catch — a podcast hosted by Dirk Horn on leadership, risk, and purpose in real life. Season 3 coming soon. Listen on Apple Podcasts, Spotify, YouTube and everywhere you get your podcasts."
 ---
 
-<section class="wrap page-hero">
-  <div class="eyebrow">Podcast</div>
-  <h1>The Pitch and The Catch</h1>
-  <p class="lead">Host Dirk Horn explores leadership, risk, and purpose in conversation with top executives &mdash; the decisions behind the results, and what they cost.</p>
-  <div class="btn-row">
-    <a class="btn-primary" href="{{ site.youtubeChannel }}">Subscribe on YouTube</a>
-  </div>
-</section>
+{# Episodes, platforms and artwork come from src/_data/podcast.json.
+   To add an episode: put it first in "episodes" — it becomes the featured one. #}
 
-<div class="section-line"></div>
+{%- macro icon(key) -%}
+{%- if key == "apple" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9.2" r="2.6" fill="currentColor"/><path d="M10.4 13.6h3.2l-.7 7.2h-1.8z" fill="currentColor"/><path d="M7.1 15.4a7 7 0 1 1 9.8 0M8.9 13.5a4.4 4.4 0 1 1 6.2 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+{%- elif key == "spotify" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M6.8 9.4c3.6-1 7.6-.7 10.6 1M7.4 12.4c3-.8 6.2-.5 8.8.9M8 15.3c2.4-.6 4.8-.4 6.8.7" fill="none" stroke="var(--icon-cut, #fff)" stroke-width="1.6" stroke-linecap="round"/></svg>
+{%- elif key == "youtube" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor"/><path d="M10 9l5 3-5 3z" fill="var(--icon-cut, #fff)"/></svg>
+{%- elif key == "rss" -%}
+<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="18" r="2" fill="currentColor"/><path d="M4 11a9 9 0 0 1 9 9M4 5a15 15 0 0 1 15 15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+{%- else -%}
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15v-3a8 8 0 0 1 16 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3" y="14" width="4.5" height="6.5" rx="1.6" fill="currentColor"/><rect x="16.5" y="14" width="4.5" height="6.5" rx="1.6" fill="currentColor"/></svg>
+{%- endif -%}
+{%- endmacro -%}
 
-<section>
-  <div class="wrap">
-    <div class="section-head"><div class="eyebrow">Watch</div><h2>Latest episodes</h2></div>
-    <div class="embed">
-      <iframe
-        src="https://www.youtube-nocookie.com/embed/videoseries?list={{ site.youtubeUploadsPlaylist }}"
-        title="The Pitch and The Catch — latest episodes"
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+{%- set eps = podcast.episodes -%}
+{%- set latest = eps[0] -%}
+
+{# --------------------------------------------- SEASON 3 TEASER (top) --- #}
+<section class="pod-hero">
+  <div class="wrap wrap--wide pod-hero-grid">
+    <div class="pod-hero-copy">
+      <div class="pod-soon"><span class="pod-soon-dot" aria-hidden="true"></span>Season 3 &middot; Coming soon</div>
+      <h1>New conversations. Same honest questions.</h1>
+      <p class="lead">{{ podcast.description }} Season 3 of <em>The Pitch and The Catch</em> brings Dirk back with a new round of leaders and the decisions that defined them.</p>
+      <p class="pod-hero-follow">Follow the show so the first episode finds you:</p>
+      <div class="pod-platforms pod-platforms--main">
+        {%- for p in podcast.platforms | batch(3) | first %}
+        <a class="pod-btn pod-btn--{{ p.key }}" href="{{ p.url }}" rel="noopener">{{ icon(p.key) | safe }}<span><small>Listen on</small>{{ p.name }}</span></a>
+        {%- endfor %}
+      </div>
+      <div class="pod-platforms pod-platforms--more">
+        <span>Also on</span>
+        {%- for p in podcast.platforms %}{% if loop.index > 3 %}
+        <a href="{{ p.url }}" rel="noopener">{{ icon(p.key) | safe }}{{ p.name }}</a>
+        {%- endif %}{% endfor %}
+      </div>
     </div>
-    <p class="logo-note">If the player doesn&rsquo;t load, watch the full channel on <a href="{{ site.youtubeChannel }}">YouTube</a>.</p>
+    <div class="pod-hero-art">
+      <img src="/assets/img/podcast/pitch-and-catch-logo.png" width="900" height="828" alt="The Pitch and The Catch with Dirk Horn — podcast logo">
+    </div>
   </div>
 </section>
 
-<div class="section-line"></div>
+{# --------------------------------------------------- LATEST EPISODE --- #}
+<section class="pod-latest" id="latest">
+  <div class="wrap wrap--wide pod-latest-grid">
+    <button class="pod-latest-art" type="button" data-play="0" aria-label="Play: {{ latest.title }}">
+      <img src="{{ podcast.artBase }}{{ latest.art }}.png" width="1500" height="1500" alt="">
+      <span class="pod-art-play" aria-hidden="true"></span>
+    </button>
+    <div class="pod-latest-body">
+      <div class="pod-latest-label">Latest episode</div>
+      <div class="pod-meta">{{ latest.date | podDate }} &middot; {{ latest.secs | podDur }}</div>
+      <h2>{{ latest.title }}</h2>
+      <div class="pod-guest">Dirk meets {{ latest.guest }}</div>
+      <p class="pod-summary">{{ latest.summary }}</p>
+      <div class="pod-player" data-player="0">
+        <button class="pod-player-btn" type="button" data-play="0" aria-label="Play episode"><span aria-hidden="true"></span></button>
+        <div class="pod-player-track">
+          <input class="pod-player-seek" type="range" min="0" max="{{ latest.secs }}" value="0" step="1" aria-label="Seek" data-seek="0">
+          <div class="pod-player-times"><span data-cur="0">0:00</span><span>{{ latest.secs | podDur }}</span></div>
+        </div>
+      </div>
+      <div class="pod-latest-links">
+        {%- for p in podcast.platforms | batch(3) | first %}
+        <a href="{{ p.url }}" rel="noopener">{{ icon(p.key) | safe }}{{ p.name }}</a>
+        {%- endfor %}
+      </div>
+    </div>
+  </div>
+</section>
 
-<section class="cta-band">
-  <div class="wrap">
-    <div class="eyebrow">Come on the show</div>
-    <h2>Have a story about a decision that mattered?</h2>
-    <p>We&rsquo;re always looking for executives with a real inflection point to talk through. Get in touch.</p>
+{# ------------------------------------------------------ ALL EPISODES --- #}
+<section class="pod-episodes" id="episodes">
+  <div class="wrap wrap--wide">
+    <div class="pod-episodes-head">
+      <div>
+        <div class="eyebrow">Episodes</div>
+        <h2>More conversations</h2>
+      </div>
+      <p>{{ eps | length }} episodes &middot; tap any one to listen right here</p>
+    </div>
+    <div class="ep-grid" data-ep-grid>
+      {%- for ep in eps %}{% if not loop.first %}
+      <article class="ep-card{% if loop.index > 9 %} is-extra{% endif %}">
+        <button class="ep-art" type="button" data-play="{{ loop.index0 }}" aria-label="Play: {{ ep.title }}">
+          <img src="{{ podcast.artBase }}{{ ep.art }}_300x300.png" width="300" height="300" alt="" loading="lazy" decoding="async">
+          <span class="pod-art-play" aria-hidden="true"></span>
+          <span class="ep-eq" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+        <div class="ep-body">
+          <div class="ep-guest">{{ ep.guest }}</div>
+          <h3>{{ ep.title }}</h3>
+          <div class="pod-meta">{{ ep.date | podDate }} &middot; {{ ep.secs | podDur }}</div>
+        </div>
+      </article>
+      {%- endif %}{% endfor %}
+    </div>
+    <div class="ep-more">
+      <button class="btn-secondary" type="button" data-show-all>Show all {{ eps | length }} episodes</button>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------ GUEST CTA --- #}
+<section class="pod-guest-cta">
+  <div class="wrap wrap--wide pod-guest-cta-grid">
+    <div>
+      <div class="eyebrow">Come on the show</div>
+      <h2>Have a story about a decision that mattered?</h2>
+      <p>We&rsquo;re always looking for executives with a real inflection point to talk through. Get in touch.</p>
+    </div>
     <div class="btn-row">
-      <a class="btn-primary" href="mailto:{{ site.email }}">Email us</a>
+      <a class="btn-primary" href="mailto:{{ site.email }}?subject=The%20Pitch%20and%20The%20Catch%20%E2%80%94%20guest%20idea">Email us</a>
       <a class="btn-secondary" href="{{ site.social.instagram }}">Follow @thepitchandthecatch</a>
     </div>
   </div>
 </section>
+
+{# Sticky mini player — appears once something is playing #}
+<div class="mini-player" data-mini hidden>
+  <div class="wrap wrap--wide mini-player-inner">
+    <img class="mini-art" src="" alt="" width="48" height="48" data-mini-art>
+    <div class="mini-info">
+      <div class="mini-guest" data-mini-guest></div>
+      <div class="mini-title" data-mini-title></div>
+    </div>
+    <button class="pod-player-btn pod-player-btn--sm" type="button" data-mini-toggle aria-label="Play or pause"><span aria-hidden="true"></span></button>
+    <div class="mini-track">
+      <input class="pod-player-seek" type="range" min="0" max="100" value="0" step="1" aria-label="Seek" data-mini-seek>
+      <div class="pod-player-times"><span data-mini-cur>0:00</span><span data-mini-dur>0:00</span></div>
+    </div>
+    <button class="mini-close" type="button" data-mini-close aria-label="Stop and close player">&times;</button>
+  </div>
+</div>
+
+<script type="application/json" id="pod-data">{{ eps | dump | safe }}</script>
+<script>window.POD_ART_BASE = {{ podcast.artBase | dump | safe }};</script>
+<script src="{{ '/assets/js/podcast.js' | bust }}" defer></script>

@@ -1,0 +1,70 @@
+---
+title: Strategy as a Service — Pricing & booking
+description: "Book a 20-minute call about Strategy as a Service. Pricing starts from $7,500 per month, spread across the engagement, cancel at any time."
+permalink: /strategy-as-a-service/pricing/
+---
+
+<section class="page-hero book-page-hero">
+  <div class="wrap wrap--wide">
+    <a class="dive-back" href="/strategy-as-a-service/">&larr; Strategy as a Service</a>
+    <div class="book-page-grid">
+      <div class="book-page-intro">
+        <div class="eyebrow">Book a call</div>
+        <h1>Start with a 20-minute conversation.</h1>
+        <p class="lead">A working session about your critical mission, not a sales pitch. Most people find it valuable regardless of what they decide afterward.</p>
+        <ol class="next-steps">
+          <li><strong>The call.</strong> 20 minutes on the change you&rsquo;re facing and whether this model fits it.</li>
+          <li><strong>Scope &amp; price, together.</strong> We agree the mission, the team and the final price before anything starts. No surprise invoices.</li>
+          <li><strong>Kick-off.</strong> Typically four to six weeks after our first conversation. If it&rsquo;s urgent, tell us and we&rsquo;ll find a way to move faster.</li>
+        </ol>
+        <div class="book-page-person">
+          <img src="/assets/img/team/dirk-horn.jpg" alt="Dirk H. Horn" width="640" height="640">
+          <p>You&rsquo;ll be speaking with <strong>Dirk H. Horn</strong>.<br>Rather write first? <a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        </div>
+      </div>
+      <div class="book-embed">
+        <div class="calendly-inline-widget" data-url="{{ site.calendly }}?hide_gdpr_banner=1&amp;primary_color=152238" style="min-width:300px;height:700px;"></div>
+        <noscript><a class="btn-primary" href="{{ site.calendly }}">Open the booking calendar</a></noscript>
+        <p class="book-embed-fallback">Calendar not loading? <a href="{{ site.calendly }}">Open it in a new tab&nbsp;&rarr;</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing" class="pricing-band">
+  <div class="wrap wrap--wide">
+    <div class="pricing-grid">
+      <div>
+        <div class="eyebrow">Pricing</div>
+        <h2>Two days of consulting fees. Twelve months of delivery.</h2>
+        <p>In the traditional consulting world, $7,500 is roughly two days of work. Here it&rsquo;s a full month of strategy design and delivery support &mdash; because we price for the outcome, not the hours.</p>
+        <p>Final pricing depends on team size and scope, agreed together before we start. We&rsquo;ve deliberately built AI tools into how we work, which lets us keep pricing competitive without the overhead of a large firm.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-card-from">Starting from</div>
+        <div class="price-card-num">$7,500<span>/ month</span></div>
+        <ul>
+          <li>Full strategy deck, built with your core team</li>
+          <li>Weekly PMO facilitation through to the finish line</li>
+          <li>HBDI team-efficiency approach throughout</li>
+          <li>Payments spread across the engagement, no large upfront fee</li>
+          <li><strong>Cancel at any time, no penalty</strong></li>
+        </ul>
+        <a class="btn-primary btn-primary--block" href="#top" data-scroll-to-embed>Book your call</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script>
+  // "Book your call" on the price card scrolls back up to the calendar.
+  document.querySelectorAll('[data-scroll-to-embed]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var el = document.querySelector('.book-embed');
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>

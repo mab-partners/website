@@ -20,6 +20,16 @@ export default function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/_redirects": "_redirects" });
   eleventyConfig.addPassthroughCopy({ "src/_headers": "_headers" });
 
+  // Podcast: "2026-07-23" -> "Jul 23, 2026"; 3116 (seconds) -> "52 min" / "1 hr 9 min".
+  eleventyConfig.addFilter("podDate", (iso) => {
+    const d = new Date(iso + "T12:00:00Z");
+    return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" });
+  });
+  eleventyConfig.addFilter("podDur", (secs) => {
+    const m = Math.round(secs / 60);
+    return m >= 60 ? `${Math.floor(m / 60)} hr ${m % 60} min` : `${m} min`;
+  });
+
   // Current year, for the footer.
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
