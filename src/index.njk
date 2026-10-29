@@ -30,8 +30,8 @@ heroOverlay: true
           <span class="situation-tile-label">Me</span>
           <span class="situation-tile-text">Increase my impact as a leader</span>
         </button>
-        <button type="button" class="situation-tile" data-step-target="question">
-          <span class="situation-tile-label">Explore</span>
+        <button type="button" class="situation-tile situation-tile--shuffle" data-step-target="question">
+          <span class="situation-tile-label"><svg class="shuffle-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h3.5c2.2 0 3.4 1 4.6 2.8l1.8 2.8c1.2 1.8 2.4 2.9 4.6 2.9H21M3 17h3.5c1.5 0 2.5-.5 3.4-1.4M14.4 8.4c.9-.9 1.9-1.4 3.1-1.4H21M18 4l3 3-3 3M18 14.5l3 3-3 3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>Explore</span>
           <span class="situation-tile-text">Surprise me</span>
         </button>
       </div>
@@ -39,135 +39,46 @@ heroOverlay: true
     </div>
   </div>
 
-  <div class="diag-step diag-step--question" data-step="question" hidden>
+  <div class="diag-step diag-step--ask" data-step="question" hidden>
     <button type="button" class="diag-back" data-back>&larr; Back</button>
-    <div class="diag-hero-top">
-      <h1>What&rsquo;s actually getting in the way <em>right now</em>?</h1>
-    </div>
-    <div class="diag-tiles-row">
-      <button type="button" class="situation-tile" data-outcome="strategy">
-        <span class="situation-tile-text">Decisions don&rsquo;t stick.</span>
-      </button>
-      <button type="button" class="situation-tile" data-outcome="hbdi">
-        <span class="situation-tile-text">It&rsquo;s people, not plans.</span>
-      </button>
-      <button type="button" class="situation-tile" data-outcome="retreat">
-        <span class="situation-tile-text">I&rsquo;m too close to it to see clearly.</span>
-      </button>
+    <div class="diag-ask">
+      <div class="diag-ask-q">
+        <div class="diag-ask-kicker">Surprise me &middot; one question</div>
+        <h1>What&rsquo;s actually getting in the way <em>right now</em>?</h1>
+        <p class="diag-ask-hint">Pick the one that stings a little.</p>
+      </div>
+      <div class="diag-ask-options">
+        <button type="button" class="ask-option" data-outcome="strategy">
+          <span class="ask-option-n">A</span>
+          <span class="ask-option-text">Decisions don&rsquo;t stick.</span>
+          <span class="ask-option-go" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="ask-option" data-outcome="hbdi">
+          <span class="ask-option-n">B</span>
+          <span class="ask-option-text">It&rsquo;s people, not plans.</span>
+          <span class="ask-option-go" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="ask-option" data-outcome="retreat">
+          <span class="ask-option-n">C</span>
+          <span class="ask-option-text">I&rsquo;m too close to it to see clearly.</span>
+          <span class="ask-option-go" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="diag-step diag-step--result" data-step="result" hidden>
-    <button type="button" class="diag-back" data-back>&larr; Start over</button>
-    <div class="diag-result">
-      <div>
+  <div class="diag-step diag-step--answer" data-step="result" hidden>
+    <div class="diag-answer">
+      <div class="diag-answer-panel">
+        <div class="diag-answer-said">You said: <span data-result-said></span></div>
         <h1 data-result-headline></h1>
-        <p class="diag-result-body" data-result-body></p>
-        <div class="btn-row">
-          <a class="btn-primary" data-result-link href="/">See how it works</a>
+        <p class="diag-answer-body" data-result-body></p>
+        <div class="diag-answer-actions">
+          <a class="btn-primary diag-answer-cta" data-result-link href="/">See how it works</a>
+          <button type="button" class="diag-answer-again" data-step-target="question">&#8635; Try another answer</button>
         </div>
-
-        <form class="diag-capture" name="diagnostic-lead" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks/" data-capture-form>
-          <input type="hidden" name="form-name" value="diagnostic-lead">
-          <input type="hidden" name="situation" value="" data-situation-field>
-          <p class="diag-capture-label" data-capture-label></p>
-          <div class="diag-capture-row">
-            <label class="sr-only" for="diag-email">Email</label>
-            <input type="email" id="diag-email" name="email" placeholder="you@company.com" required>
-            <button type="submit" class="btn-secondary">Send it to me</button>
-          </div>
-          <p class="bot-field-wrap" hidden><label>Don&rsquo;t fill this out if you&rsquo;re human: <input name="bot-field"></label></p>
-        </form>
-        <p class="diag-capture-success" data-capture-success hidden>Thanks &mdash; that&rsquo;s on its way. We&rsquo;ll follow up personally too.</p>
       </div>
-      <div>
-        <div class="align-box">
-          <svg viewBox="0 0 460 300" width="100%" role="img" aria-label="Decisions from across an organization converging into one shared direction.">
-            <defs>
-              <linearGradient id="spineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="#C7AE78"/>
-                <stop offset="100%" stop-color="#8A6A32"/>
-              </linearGradient>
-              <radialGradient id="missionGlow" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#9C7A3C" stop-opacity="0.15"/>
-                <stop offset="100%" stop-color="#9C7A3C" stop-opacity="0"/>
-              </radialGradient>
-              <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="6" refY="4" orient="auto">
-                <path d="M0,0 L8,4 L0,8 Z" fill="#D9C48A"/>
-              </marker>
-            </defs>
-
-            <g stroke="#C6C3B9" stroke-width="1.3" fill="none" stroke-linecap="round">
-              <path d="M26,66 C131,66 210,150 236,150"/>
-              <path d="M38,96 C132,96 200,150 226,150"/>
-              <path d="M30,126 C137,126 218,150 244,150"/>
-              <path d="M50,150 C132,150 188,150 214,150"/>
-              <path d="M34,176 C139,176 218,150 244,150"/>
-              <path d="M44,206 C136,206 202,150 228,150"/>
-              <path d="M28,238 C132,238 210,150 236,150"/>
-              <path d="M66,84 C158,84 224,150 250,150"/>
-              <path d="M62,214 C156,214 224,150 250,150"/>
-              <path d="M92,150 C149,150 180,150 206,150"/>
-              <path d="M80,112 C160,112 214,150 240,150"/>
-              <path d="M78,190 C159,190 214,150 240,150"/>
-              <path d="M20,78 C127,78 260,150 288,150"/>
-              <path d="M24,222 C130,222 260,150 288,150"/>
-              <path d="M54,104 C163,104 298,150 326,150"/>
-              <path d="M46,198 C158,198 298,150 326,150"/>
-            </g>
-
-            <g fill="#A9A79E">
-              <circle cx="26" cy="66" r="4.4" opacity="0.78"/>
-              <circle cx="38" cy="96" r="5.2" opacity="0.74"/>
-              <circle cx="30" cy="126" r="4.5" opacity="0.8"/>
-              <circle cx="50" cy="150" r="3.8" opacity="0.76"/>
-              <circle cx="34" cy="176" r="4.8" opacity="0.85"/>
-              <circle cx="44" cy="206" r="3.6" opacity="0.68"/>
-              <circle cx="28" cy="238" r="3.6" opacity="0.85"/>
-              <circle cx="66" cy="84" r="4.6" opacity="0.6"/>
-              <circle cx="62" cy="214" r="5.2" opacity="0.9"/>
-              <circle cx="92" cy="150" r="4.6" opacity="0.8"/>
-              <circle cx="80" cy="112" r="3.7" opacity="0.58"/>
-              <circle cx="78" cy="190" r="4.4" opacity="0.6"/>
-              <circle cx="20" cy="92" r="2.6" opacity="0.5"/>
-              <circle cx="57" cy="234" r="3.2" opacity="0.56"/>
-              <circle cx="64" cy="150" r="2.6" opacity="0.45"/>
-              <circle cx="112" cy="120" r="3.4" opacity="0.4"/>
-              <circle cx="43" cy="70" r="2.8" opacity="0.4"/>
-              <circle cx="104" cy="171" r="3.2" opacity="0.42"/>
-              <circle cx="120" cy="98" r="2.6" opacity="0.36"/>
-              <circle cx="18" cy="160" r="3.6" opacity="0.5"/>
-              <circle cx="18" cy="112" r="3.4" opacity="0.55"/>
-              <circle cx="99" cy="228" r="2.6" opacity="0.4"/>
-              <circle cx="120" cy="200" r="3" opacity="0.38"/>
-              <circle cx="46" cy="128" r="2.6" opacity="0.5"/>
-              <circle cx="72" cy="60" r="2.4" opacity="0.36"/>
-              <circle cx="108" cy="246" r="3.2" opacity="0.4"/>
-              <circle cx="20" cy="78" r="3.4" opacity="0.62"/>
-              <circle cx="24" cy="222" r="3.2" opacity="0.58"/>
-              <circle cx="54" cy="104" r="3" opacity="0.5"/>
-              <circle cx="46" cy="198" r="3.2" opacity="0.5"/>
-            </g>
-
-            <circle cx="398" cy="150" r="44" fill="url(#missionGlow)"/>
-            <circle cx="398" cy="150" r="36" fill="none" stroke="#EAE1CC" stroke-width="1"/>
-            <circle cx="398" cy="150" r="26" fill="none" stroke="#E1CF9F" stroke-width="1.5"/>
-            <circle cx="398" cy="150" r="16" fill="none" stroke="#D0B876" stroke-width="2"/>
-            <circle cx="398" cy="150" r="8" fill="#9C7A3C"/>
-
-            <line x1="196" y1="150" x2="350" y2="150" stroke="url(#spineGrad)" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowhead)"/>
-            <g fill="#F2EFE7">
-              <circle cx="212" cy="150" r="5"/>
-              <circle cx="250" cy="150" r="5"/>
-              <circle cx="288" cy="150" r="5"/>
-              <circle cx="326" cy="150" r="5"/>
-            </g>
-
-            <text x="398" y="214" text-anchor="middle" font-family="Archivo, system-ui, sans-serif" font-size="13" fill="#D9C48A" font-weight="600" letter-spacing="0.2">One direction</text>
-          </svg>
-        </div>
-        <p class="align-caption">Decisions get made across every team, every day. The next step works when they point the same way.</p>
-      </div>
+      <button type="button" class="diag-back diag-back--answer" data-back>&larr; Start over</button>
     </div>
   </div>
 
@@ -357,7 +268,7 @@ heroOverlay: true
       <h2>Increase my impact as a leader.</h2>
       <p>Leadership gets harder as the stakes get higher. There are fewer obvious answers, more competing demands and fewer people you can think out loud with.</p>
       <p>We work one-on-one with leaders on the situations that matter now: a new role, a difficult team, a transformation, a decision, or simply the question of how to have more impact.</p>
-      <div class="btn-row"><a class="btn-primary btn-primary--on-dark" href="{{ site.calendly }}">Explore Executive Coaching &rarr;</a></div>
+      <div class="btn-row"><a class="btn-primary btn-primary--on-dark" href="/executive-coaching/">Explore Executive Coaching &rarr;</a></div>
       <p class="challenge-secondary-link"><a href="/retreats/">Explore the retreats &rarr;</a></p>
     </div>
   </div>

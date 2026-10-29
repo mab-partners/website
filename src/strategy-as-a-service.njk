@@ -18,7 +18,9 @@ description: "Most strategy engagements fail for a predictable reason: they stop
       <div class="eyebrow">Strategy as a Service</div>
       <h1>Most strategy engagements fail for a <em>predictable</em> reason.</h1>
       <p class="lead">They stop at the deck. The workshops end, the energy fades, and the plan quietly stalls for lack of implementation support. We stay for the part that decides the outcome: delivery.</p>
-      <a class="sas-hero-scroll" href="#why">See why it fails <span aria-hidden="true">&darr;</span></a>
+      <div class="sas-hero-links">
+        <a class="sas-hero-scroll" href="#why">See why it fails <span aria-hidden="true">&darr;</span></a>
+      </div>
     </div>
 
     <aside class="sas-book-card" aria-label="Book a call">
@@ -31,6 +33,11 @@ description: "Most strategy engagements fail for a predictable reason: they stop
       </div>
       <p>A working conversation about your critical mission &mdash; not a sales pitch. Most people find it useful whatever they decide.</p>
       <a class="btn-primary btn-primary--brass btn-primary--block" href="{{ site.calendly }}">Book a 20-minute call&nbsp;&rarr;</a>
+      <a class="sas-book-fit" href="#fit">
+        <svg class="sas-book-fit-ring" viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" class="t"/><circle cx="18" cy="18" r="15" class="f"/></svg>
+        <span class="sas-book-fit-txt"><strong>Is this right for you?</strong><small>5 questions &middot; 1 minute</small></span>
+        <span class="sas-book-fit-go" aria-hidden="true">&darr;</span>
+      </a>
       <a class="sas-book-link" href="/strategy-as-a-service/pricing/">Pricing &amp; how booking works</a>
     </aside>
   </div>
@@ -45,8 +52,8 @@ description: "Most strategy engagements fail for a predictable reason: they stop
       <a href="#why">Why</a>
       <a href="#how">How</a>
       <a href="#compare">Compare</a>
-      <a href="#results">Results</a>
       <a href="#fit">Fit check</a>
+      <a href="#results">Results</a>
       <a href="/strategy-as-a-service/pricing/">Pricing</a>
     </div>
     <a class="sas-localnav-cta" href="{{ site.calendly }}">Book a call</a>
@@ -208,11 +215,120 @@ description: "Most strategy engagements fail for a predictable reason: they stop
       </div>
     </div>
     <div class="cmp-more">
-      <button class="cmp-more-btn" type="button" data-dialog-open="engagement">
-        <span class="cmp-more-kicker">The engagement at a glance</span>
-        <span class="cmp-more-title">What exactly do you get? <span aria-hidden="true">&rarr;</span></span>
-      </button>
-      <a class="cmp-more-link" href="#fit">Not sure it fits? Take the 1-minute fit check</a>
+      <a class="cmp-fit-cta" href="#fit">
+        <span class="cmp-fit-cta-k">Next: 5 questions, 1 minute</span>
+        <span class="cmp-fit-cta-t">Take the fit check <span aria-hidden="true">&darr;</span></span>
+      </a>
+      <button class="cmp-glance" type="button" data-dialog-open="engagement">What exactly do you get?</button>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------------- FIT CHECK --- #}
+{# Directly after the comparison, so the CTA above leads straight here.
+   Five questions; a readiness gauge and a "good to know" line update as you
+   answer; early exit if it's a quick fix; a takeaway either way. #}
+<section id="fit" class="fit2">
+  <div class="wrap wrap--wide">
+    <div class="fit2-head">
+      <div class="eyebrow">Fit check</div>
+      <h2>Is Strategy as a Service a fit for you?</h2>
+      <p>Five questions, one minute. An honest answer &mdash; and something to take home either way.</p>
+    </div>
+
+    <div class="fit2-board" data-fit2>
+      <div class="fit2-main">
+        <ol class="fit2-dots" aria-hidden="true"><li></li><li></li><li></li><li></li><li></li></ol>
+
+        <fieldset class="fit2-q" data-q="0">
+          <legend><span class="fit2-qn">01</span>Picture your organization 18 months from now. What has changed?</legend>
+          <div class="fit2-opts">
+            <button type="button" data-v="2" data-note="n95">We win more business &mdash; the commercial engine finally runs</button>
+            <button type="button" data-v="2" data-note="n95">We sell something new &mdash; a new product, service or market</button>
+            <button type="button" data-v="2" data-note="n95">We work differently &mdash; faster, with more ownership</button>
+            <button type="button" data-exit="1">Honestly? We just need to fix one specific thing</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="fit2-q" data-q="1" hidden>
+          <legend><span class="fit2-qn">02</span>How long will that change really take?</legend>
+          <div class="fit2-opts fit2-opts--3">
+            <button type="button" data-exit="1">A few weeks</button>
+            <button type="button" data-v="1" data-note="nMonths">A few months</button>
+            <button type="button" data-v="2" data-note="nYear">A year or more</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="fit2-q" data-q="2" hidden>
+          <legend><span class="fit2-qn">03</span>When it gets hard in month four, who stands up for it?</legend>
+          <div class="fit2-opts fit2-opts--3">
+            <button type="button" data-v="2" data-note="nSponsor">Our CEO or owner &mdash; visibly</button>
+            <button type="button" data-v="1" data-note="nSponsor">A senior leader, if we make the case</button>
+            <button type="button" data-v="0" data-flag="sponsor" data-note="nSponsor">Nobody yet</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="fit2-q" data-q="3" hidden>
+          <legend><span class="fit2-qn">04</span>Who would carry the work?</legend>
+          <div class="fit2-opts fit2-opts--3">
+            <button type="button" data-v="2" data-note="nTeam">A cross-functional team of 8&ndash;12</button>
+            <button type="button" data-v="1" data-note="nTeam">A handful of people</button>
+            <button type="button" data-v="0" data-flag="team" data-note="nTeam">Mostly me</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="fit2-q" data-q="4" hidden>
+          <legend><span class="fit2-qn">05</span>Last time a big initiative stalled, what got in the way?</legend>
+          <div class="fit2-opts">
+            <button type="button" data-v="2" data-take="tDaily" data-note="n600">The day-to-day took over</button>
+            <button type="button" data-v="2" data-take="tOwner" data-note="n600">Nobody owned the follow-through</button>
+            <button type="button" data-v="2" data-take="tBuyin" data-note="n600">People weren&rsquo;t really bought in</button>
+            <button type="button" data-v="2" data-take="tNew" data-note="n600">We&rsquo;ve never really tried</button>
+          </div>
+        </fieldset>
+
+        <div class="fit2-result" data-fit2-result hidden aria-live="polite">
+          <div class="fit2-tag" data-r-tag></div>
+          <h3 data-r-title></h3>
+          <p data-r-text></p>
+          <div class="btn-row">
+            <a class="btn-primary btn-primary--brass" href="{{ site.calendly }}" data-r-cta>Book a 20-minute call</a>
+            <a class="btn-secondary" href="#" data-r-alt hidden></a>
+          </div>
+        </div>
+
+        <div class="fit2-exit" data-fit2-exit hidden aria-live="polite">
+          <div class="fit2-tag fit2-tag--soft">Good news</div>
+          <h3>You probably don&rsquo;t need a 12-month program.</h3>
+          <p>Strategy as a Service is built for change that takes 12&ndash;18 months. For a focused, shorter challenge, one of these usually works better:</p>
+          <div class="fit2-alts">
+            <a href="/hbdi/"><strong>A team session</strong><span>One day with HBDI to get your team pulling the same way</span></a>
+            <a href="/executive-coaching/"><strong>Executive coaching</strong><span>One-to-one, on the situation in front of you</span></a>
+            <a href="/retreats/"><strong>A leadership retreat</strong><span>Step out of the day-to-day to see it clearly</span></a>
+          </div>
+          <p class="fit2-exit-more">Not sure? <a href="{{ site.calendly }}">Tell us about it on a 20-minute call</a>.</p>
+        </div>
+
+        <div class="fit2-nav">
+          <button class="fit2-back" type="button" data-fit2-back hidden>&larr; Back</button>
+          <button class="fit2-restart" type="button" data-fit2-restart hidden>&#8635; Start over</button>
+        </div>
+      </div>
+
+      <aside class="fit2-side" aria-live="polite">
+        <div class="fit2-gauge">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" class="fit2-gauge-track"/>
+            <circle cx="60" cy="60" r="52" class="fit2-gauge-fill" data-gauge/>
+          </svg>
+          <div class="fit2-gauge-num"><span data-gauge-num>0</span><small>%</small></div>
+          <div class="fit2-gauge-label" data-gauge-label>Readiness</div>
+        </div>
+        <div class="fit2-note" data-note-box>
+          <div class="fit2-note-k" data-note-k>Good to know</div>
+          <p data-note-text>Most strategies don&rsquo;t fail on the idea. They fail in the follow-through.</p>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -238,70 +354,6 @@ description: "Most strategy engagements fail for a predictable reason: they stop
       </div>
     </div>
     <p class="sas-results-note">Figures as reported by our clients. <strong>Pro Refrigeration</strong> is letting us document a live engagement in the open &mdash; a rare look at how the method runs in real time.</p>
-  </div>
-</section>
-
-{# ------------------------------------------------------- FIT CHECK --- #}
-<section id="fit" class="fit">
-  <div class="wrap wrap--wide fit-grid">
-    <div class="fit-intro">
-      <div class="eyebrow">Fit check</div>
-      <h2>Is Strategy as a Service a fit for you?</h2>
-      <p>Five quick questions, about a minute. You&rsquo;ll get an honest read &mdash; including when a different approach would serve you better.</p>
-    </div>
-    <div class="fit-card" data-fit>
-      <div class="fit-progress" aria-hidden="true"><span data-fit-bar></span></div>
-      <div class="fit-step-count" data-fit-count>Question 1 of 5</div>
-
-      <fieldset class="fit-q" data-q="0">
-        <legend>What kind of change are you facing?</legend>
-        <button type="button" data-v="2">Building or improving our commercial engine</button>
-        <button type="button" data-v="2">Evolving our value proposition &mdash; a new product, service or market</button>
-        <button type="button" data-v="2">Changing how we work &mdash; habits and structures holding us back</button>
-        <button type="button" data-v="0" data-flag="quick">A specific problem we could fix in a few weeks</button>
-      </fieldset>
-
-      <fieldset class="fit-q" data-q="1" hidden>
-        <legend>How long do you realistically expect it to take?</legend>
-        <button type="button" data-v="0" data-flag="quick">A few weeks</button>
-        <button type="button" data-v="1">A few months</button>
-        <button type="button" data-v="2">A year or more</button>
-      </fieldset>
-
-      <fieldset class="fit-q" data-q="2" hidden>
-        <legend>Is there a senior sponsor who will visibly back it &mdash; the owner, CEO or a division head?</legend>
-        <button type="button" data-v="2">Yes, and they&rsquo;re committed</button>
-        <button type="button" data-v="1">Probably, we&rsquo;d need to bring them in</button>
-        <button type="button" data-v="0" data-flag="sponsor">Not really</button>
-      </fieldset>
-
-      <fieldset class="fit-q" data-q="3" hidden>
-        <legend>Could you put a core team of 8&ndash;12 people on it, alongside their day jobs?</legend>
-        <button type="button" data-v="2">Yes</button>
-        <button type="button" data-v="1">A smaller group to start</button>
-        <button type="button" data-v="0" data-flag="team">It&rsquo;s really just me for now</button>
-      </fieldset>
-
-      <fieldset class="fit-q" data-q="4" hidden>
-        <legend>Roughly how large is your organization (or the unit this is for)?</legend>
-        <button type="button" data-v="1">Under $25M in revenue</button>
-        <button type="button" data-v="2">$25M &ndash; $2B</button>
-        <button type="button" data-v="2">Over $2B, or a division of a larger company</button>
-      </fieldset>
-
-      <div class="fit-result" data-fit-result hidden aria-live="polite">
-        <div class="fit-result-tag" data-r-tag></div>
-        <h3 data-r-title></h3>
-        <p data-r-text></p>
-        <div class="btn-row">
-          <a class="btn-primary btn-primary--brass" data-r-cta href="{{ site.calendly }}">Book a 20-minute call</a>
-          <a class="btn-secondary" data-r-alt href="/hbdi/" hidden>Explore team development (HBDI)</a>
-        </div>
-      </div>
-
-      <button class="fit-back" type="button" data-fit-back hidden>&larr; Back</button>
-      <button class="fit-restart" type="button" data-fit-restart hidden>Start over</button>
-    </div>
   </div>
 </section>
 

@@ -1,6 +1,6 @@
 ---
 title: HBDI Team Assessment
-description: "Turn team turbulence into high performance with the HBDI assessment. 18 years, 2,000+ individuals and 250+ teams debriefed. HBDI for Individuals ($500) and HBDI for Teams (flat rate by group size)."
+description: "Turn team turbulence into high performance with the HBDI assessment. 21 years, 3,000+ individuals and 450+ teams debriefed. Explore the four thinking styles, try a 60-second color check, and book an individual or team debrief."
 ---
 
 <section class="hbdi-hero">
@@ -16,54 +16,176 @@ description: "Turn team turbulence into high performance with the HBDI assessmen
       <p class="lead">Join 3,000+ leaders who&rsquo;ve used a science-backed framework to build stronger teams, improve communication, and drive better business results.</p>
       <div class="btn-row">
         <a class="btn-primary" href="{{ site.calendly }}">Get in touch for a team assessment</a>
+        <a class="hb-hero-link" href="#color-check">What color do you think in? <span aria-hidden="true">&darr;</span></a>
+      </div>
+    </div>
+  </div>
+  <div class="hb-stripe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+</section>
+
+{# ------------------------------------------------ CREDIBILITY (front and center) #}
+<section class="hb-cred">
+  <div class="wrap wrap--wide hb-cred-grid">
+    <div class="hb-cred-item hb-c-blue">
+      <div class="hb-cred-num" data-count="21">21</div>
+      <div class="hb-cred-label">years running HBDI debriefs</div>
+    </div>
+    <div class="hb-cred-item hb-c-green">
+      <div class="hb-cred-num" data-count="3000" data-suffix="+">3,000+</div>
+      <div class="hb-cred-label">leaders and experts profiled</div>
+    </div>
+    <div class="hb-cred-item hb-c-red">
+      <div class="hb-cred-num" data-count="450" data-suffix="+">450+</div>
+      <div class="hb-cred-label">teams taken through a debrief</div>
+    </div>
+    <div class="hb-cred-item hb-c-yellow">
+      <div class="hb-cred-num">4</div>
+      <div class="hb-cred-label">colors your team will be talking in afterwards</div>
+    </div>
+  </div>
+</section>
+
+{# ------------------------------------------------ INTERACTIVE MODEL #}
+<section class="hb-model" id="model">
+  <div class="wrap wrap--wide">
+    <div class="hb-model-head">
+      <div class="eyebrow">The Whole Brain&reg; model</div>
+      <h2>Four ways of thinking. One team.</h2>
+      <p>Everyone uses all four &mdash; but each of us leans on some more than others. Tap a quadrant.</p>
+    </div>
+    <div class="hb-model-grid" data-hb-model>
+      <div class="hb-wheel" role="tablist" aria-label="The four thinking styles">
+        <button class="hb-q hb-q--blue" role="tab" aria-selected="false" aria-controls="hb-panel" data-q="blue">
+          <span class="hb-q-name">Analytical</span><span class="hb-q-ask">What?</span>
+        </button>
+        <button class="hb-q hb-q--yellow" role="tab" aria-selected="false" aria-controls="hb-panel" data-q="yellow">
+          <span class="hb-q-name">Experimental</span><span class="hb-q-ask">Why?</span>
+        </button>
+        <button class="hb-q hb-q--green" role="tab" aria-selected="false" aria-controls="hb-panel" data-q="green">
+          <span class="hb-q-name">Practical</span><span class="hb-q-ask">How?</span>
+        </button>
+        <button class="hb-q hb-q--red" role="tab" aria-selected="false" aria-controls="hb-panel" data-q="red">
+          <span class="hb-q-name">Relational</span><span class="hb-q-ask">Who?</span>
+        </button>
+        <div class="hb-wheel-core" aria-hidden="true"><span>Whole<br>Brain</span></div>
+      </div>
+
+      <div class="hb-panel" id="hb-panel" role="tabpanel" aria-live="polite" data-hb-panel>
+        <div class="hb-panel-empty">
+          <div class="hb-panel-dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+          <h3>Pick a color.</h3>
+          <p>Each quadrant asks a different question first. Most friction in a team is just two people answering different questions.</p>
+        </div>
+      </div>
+    </div>
+
+    <template id="hb-tpl">
+      <div class="hb-panel-card">
+        <div class="hb-panel-k"></div>
+        <h3></h3>
+        <p class="hb-panel-traits"></p>
+        <dl>
+          <div><dt>Asks first</dt><dd data-f="ask"></dd></div>
+          <div><dt>Sounds like</dt><dd data-f="says"></dd></div>
+          <div><dt>Gets frustrated by</dt><dd data-f="frust"></dd></div>
+          <div><dt>Win them over</dt><dd data-f="win"></dd></div>
+        </dl>
+      </div>
+    </template>
+  </div>
+</section>
+
+{# ------------------------------------------------ COLOR CHECK GAME #}
+<section class="hb-game" id="color-check">
+  <div class="wrap wrap--wide hb-game-grid">
+    <div class="hb-game-intro">
+      <div class="eyebrow">60-second color check</div>
+      <h2>What color do you think in?</h2>
+      <p>Five quick picks. Go with your gut &mdash; there are no wrong colors, only different ones.</p>
+      <p class="hb-game-fine">Just for fun. The real HBDI is a validated 120-question assessment with a personal debrief.</p>
+    </div>
+
+    <div class="hb-game-card" data-hb-game>
+      <div class="hb-game-progress" aria-hidden="true"><span data-hb-bar></span></div>
+      <div class="hb-game-count" data-hb-count>1 / 5</div>
+
+      <fieldset class="hb-gq" data-gq="0">
+        <legend>A new project lands on your desk. First thing you do?</legend>
+        <div class="hb-gopts">
+          <button type="button" data-c="blue">Ask for the numbers</button>
+          <button type="button" data-c="green">Build the plan and the timeline</button>
+          <button type="button" data-c="red">Find out who&rsquo;s involved</button>
+          <button type="button" data-c="yellow">Picture where it could lead</button>
+        </div>
+      </fieldset>
+      <fieldset class="hb-gq" data-gq="1" hidden>
+        <legend>In meetings, you get impatient when&hellip;</legend>
+        <div class="hb-gopts">
+          <button type="button" data-c="yellow">we drown in details</button>
+          <button type="button" data-c="red">nobody really listens</button>
+          <button type="button" data-c="blue">people argue without facts</button>
+          <button type="button" data-c="green">the agenda goes off the rails</button>
+        </div>
+      </fieldset>
+      <fieldset class="hb-gq" data-gq="2" hidden>
+        <legend>The compliment that lands best?</legend>
+        <div class="hb-gopts">
+          <button type="button" data-c="green">&ldquo;I can always rely on you.&rdquo;</button>
+          <button type="button" data-c="yellow">&ldquo;What an original idea.&rdquo;</button>
+          <button type="button" data-c="red">&ldquo;You made everyone feel heard.&rdquo;</button>
+          <button type="button" data-c="blue">&ldquo;That&rsquo;s a sharp analysis.&rdquo;</button>
+        </div>
+      </fieldset>
+      <fieldset class="hb-gq" data-gq="3" hidden>
+        <legend>Pick your perfect Saturday.</legend>
+        <div class="hb-gopts">
+          <button type="button" data-c="red">A long dinner with friends</button>
+          <button type="button" data-c="blue">Cracking a really hard puzzle</button>
+          <button type="button" data-c="yellow">Somewhere you&rsquo;ve never been</button>
+          <button type="button" data-c="green">Finally sorting out the garage</button>
+        </div>
+      </fieldset>
+      <fieldset class="hb-gq" data-gq="4" hidden>
+        <legend>Your desk, honestly?</legend>
+        <div class="hb-gopts">
+          <button type="button" data-c="yellow">Creative chaos</button>
+          <button type="button" data-c="green">Neat &mdash; everything has its place</button>
+          <button type="button" data-c="blue">Functional. Just the essentials</button>
+          <button type="button" data-c="red">Photos, plants, a few mugs</button>
+        </div>
+      </fieldset>
+
+      <div class="hb-gresult" data-hb-result hidden aria-live="polite">
+        <div class="hb-gresult-top">
+          <div class="hb-gresult-k">You lead with</div>
+          <h3 data-hb-title></h3>
+          <p data-hb-line></p>
+        </div>
+        <div class="hb-bars" data-hb-bars>
+          <div class="hb-bar hb-bar--blue"><span class="hb-bar-l">Blue</span><span class="hb-bar-t"><i data-bar="blue"></i></span></div>
+          <div class="hb-bar hb-bar--green"><span class="hb-bar-l">Green</span><span class="hb-bar-t"><i data-bar="green"></i></span></div>
+          <div class="hb-bar hb-bar--red"><span class="hb-bar-l">Red</span><span class="hb-bar-t"><i data-bar="red"></i></span></div>
+          <div class="hb-bar hb-bar--yellow"><span class="hb-bar-l">Yellow</span><span class="hb-bar-t"><i data-bar="yellow"></i></span></div>
+        </div>
+        <div class="hb-take">
+          <div class="hb-take-k">Take this into your next meeting</div>
+          <p data-hb-tip></p>
+        </div>
+        <div class="btn-row">
+          <a class="btn-primary" href="{{ site.calendly }}">Get your real HBDI profile</a>
+          <button class="hb-again" type="button" data-hb-again>&#8635; Play again</button>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="section-line"></div>
-
-<section>
-  <div class="wrap">
-    <div class="section-head"><div class="eyebrow">Clients</div><h2>A selection of past and current clients</h2></div>
-    <div class="logo-strip">
-      <img src="/assets/img/logos/american-tower.png" alt="American Tower">
-      <img src="/assets/img/logos/bmw.png" alt="BMW">
-      <img src="/assets/img/logos/novartis.png" alt="Novartis">
-      <img src="/assets/img/logos/weir.png" alt="Weir">
-      <img src="/assets/img/logos/roche.png" alt="Roche">
-      <img src="/assets/img/logos/mtw.png" alt="Manitowoc">
-      <img src="/assets/img/logos/bayer.png" alt="Bayer">
-    </div>
-    <p class="logo-note">&#42; A selection of past and current clients.</p>
-  </div>
-</section>
-
-<div class="section-line"></div>
-
-<section>
-  <div class="wrap prose">
-    <div class="eyebrow">Why the HBDI assessment</div>
-    <h2 class="mt-0">A shared language for how your team thinks.</h2>
-    <p>Our HBDI team building is tailored to your specific challenges and gives you insight into you and your team members&rsquo; thinking preferences &mdash; enabling more informed decisions and more confident leadership. Leadership teams draw immediate value from the session, because HBDI equips them with a new language to address both everyday issues and strategic direction.</p>
-    <p>We&rsquo;re New York City based, but run HBDI sessions across the nation and in other countries. Over the last few years we&rsquo;ve refined the approach to deliver HBDI in an all-virtual session too &mdash; useful when speed matters and an in-person meeting isn&rsquo;t feasible.</p>
-    <h3>About us</h3>
-    <p>In the last 18 years we&rsquo;ve taken over <strong>2,000 individuals</strong> &mdash; leaders and experts &mdash; and more than <strong>250 teams</strong> through our HBDI assessment debrief. We&rsquo;re not HBDI salespeople; we deeply believe in the impact it has on a business. HBDI:</p>
-    <ul>
-      <li>supports an individual&rsquo;s self-awareness and growth</li>
-      <li>dramatically improves team dynamics</li>
-      <li>helps guide organizations through transformational change</li>
-    </ul>
-  </div>
-</section>
-
-<div class="section-line"></div>
-
-<section>
+{# ------------------------------------------------ PROGRAMS #}
+<section class="hb-programs">
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">Programs</div><h2>Two ways to start</h2></div>
     <div class="tier-grid">
-      <div class="tier">
+      <div class="tier hb-tier">
         <div class="tier-flag">1 &mdash; Individuals</div>
         <h3>HBDI for Individuals</h3>
         <div class="tier-price">$500</div>
@@ -75,7 +197,7 @@ description: "Turn team turbulence into high performance with the HBDI assessmen
         </ul>
         <a class="btn-primary" href="{{ site.calendly }}">Get in touch with Dirk</a>
       </div>
-      <div class="tier featured">
+      <div class="tier featured hb-tier">
         <div class="tier-flag">2 &mdash; Most popular</div>
         <h3>HBDI for Teams</h3>
         <div class="tier-price">Flat rate by group size</div>
@@ -92,9 +214,25 @@ description: "Turn team turbulence into high performance with the HBDI assessmen
   </div>
 </section>
 
-<div class="section-line"></div>
+{# ------------------------------------------------ WHY HBDI #}
+<section class="hb-why">
+  <div class="wrap wrap--wide">
+    <div class="hb-why-head">
+      <div class="eyebrow">Why the HBDI assessment</div>
+      <h2>A shared language for how your team thinks.</h2>
+      <p>Leadership teams draw value from the first session, because HBDI gives them a new language for everyday issues and strategic direction alike. We&rsquo;re not HBDI salespeople &mdash; we use it because we&rsquo;ve seen what it does to a business.</p>
+    </div>
+    <div class="hb-why-grid">
+      <div class="hb-why-card hb-c-blue"><span class="hb-why-dot"></span><h3>Know yourself</h3><p>Supports each person&rsquo;s self-awareness and growth &mdash; how you think, decide and react under pressure.</p></div>
+      <div class="hb-why-card hb-c-red"><span class="hb-why-dot"></span><h3>Fix the dynamics</h3><p>Dramatically improves how a team works together &mdash; less talking about each other, more talking with each other.</p></div>
+      <div class="hb-why-card hb-c-yellow"><span class="hb-why-dot"></span><h3>Carry the change</h3><p>Helps guide organizations through transformation, because people can name what&rsquo;s getting in the way.</p></div>
+    </div>
+    <p class="hb-why-note">New York City based, running sessions across the US and abroad &mdash; in person, or fully virtual when speed matters.</p>
+  </div>
+</section>
 
-<section>
+{# ------------------------------------------------ TESTIMONIALS #}
+<section class="hb-quotes">
   <div class="wrap">
     <div class="section-head"><div class="eyebrow">What clients say</div><h2>&ldquo;We&rsquo;re talking colors now &mdash; and it&rsquo;s making us so much better.&rdquo;</h2></div>
     <div class="quote-grid">
@@ -126,16 +264,16 @@ description: "Turn team turbulence into high performance with the HBDI assessmen
   </div>
 </section>
 
-<div class="section-line"></div>
-
-<section class="cta-band">
+<section class="hb-cta">
   <div class="wrap">
     <div class="eyebrow">Get started</div>
     <h2>Book a session with us. Let&rsquo;s talk about HBDI.</h2>
     <p>A short exploration call with Dirk to work out whether an individual profile or a full team debrief is the right next step.</p>
     <div class="btn-row">
-      <a class="btn-primary" href="{{ site.calendly }}">Talk to us</a>
+      <a class="btn-primary btn-primary--brass" href="{{ site.calendly }}">Talk to us</a>
       <a class="btn-secondary" href="mailto:{{ site.email }}">Email Dirk</a>
     </div>
   </div>
 </section>
+
+<script src="{{ '/assets/js/hbdi.js' | bust }}" defer></script>

@@ -35,78 +35,124 @@
     });
   });
 
-  // --- Fit check: five questions, one at a time, then an honest read.
-  var fit = document.querySelector('[data-fit]');
+  // --- Fit check v2: five questions with a live readiness gauge and a
+  //     "good to know" line; early exit for quick fixes; a takeaway at the end.
+  var fit = document.querySelector('[data-fit2]');
   if (fit) {
-    var qs = Array.prototype.slice.call(fit.querySelectorAll('.fit-q'));
-    var fitBar = fit.querySelector('[data-fit-bar]');
-    var count = fit.querySelector('[data-fit-count]');
-    var res = fit.querySelector('[data-fit-result]');
-    var back = fit.querySelector('[data-fit-back]');
-    var restart = fit.querySelector('[data-fit-restart]');
+    var qs = Array.prototype.slice.call(fit.querySelectorAll('.fit2-q'));
+    var dots = Array.prototype.slice.call(fit.querySelectorAll('.fit2-dots li'));
+    var resBox = fit.querySelector('[data-fit2-result]');
+    var exitBox = fit.querySelector('[data-fit2-exit]');
+    var backBtn = fit.querySelector('[data-fit2-back]');
+    var restartBtn = fit.querySelector('[data-fit2-restart]');
+    var gauge = fit.querySelector('[data-gauge]');
+    var gaugeNum = fit.querySelector('[data-gauge-num]');
+    var gaugeLabel = fit.querySelector('[data-gauge-label]');
+    var noteK = fit.querySelector('[data-note-k]');
+    var noteText = fit.querySelector('[data-note-text]');
+    var noteBox = fit.querySelector('[data-note-box]');
+    var CIRC = 2 * Math.PI * 52, MAX = 10;
     var answers = [], step = 0;
+
+    var NOTES = {
+      intro: 'Most strategies don’t fail on the idea. They fail in the follow-through.',
+      n95: '95% of the value of any strategy lies in its delivery — not in the deck.',
+      nMonths: 'If the change touches daily habits, not just priorities, plan for 12–18 months rather than a few.',
+      nYear: 'Twelve months is the minimum for a change that sticks. The more it touches daily habits, the closer it gets to eighteen.',
+      nSponsor: 'Change doesn’t sustain itself unless it’s visibly backed from the top.',
+      nTeam: '8–12 people is the sweet spot: enough perspectives to see the whole problem, small enough to move fast.',
+      n600: 'A 30-person team makes around 600 decisions a day. Strategy is what pulls them in one direction.'
+    };
+    var TAKE = {
+      tDaily: 'Strategy rarely loses to bad ideas. It loses to Tuesday. Protect one hour a week for it — that’s where it survives.',
+      tOwner: 'What gets asked about every week gets done. Give your strategy someone whose job is to ask.',
+      tBuyin: 'People support what they help build. Bring your 8–12 into the room before the plan is finished.',
+      tNew: 'Start with one critical mission, not ten. A clear direction pulls hundreds of daily decisions the same way.'
+    };
     var RESULTS = {
       strong: { tag: 'Strong fit', title: 'This is exactly what Strategy as a Service is built for.',
-        text: 'A critical mission, a sponsor behind it and a team to carry it. On a 20-minute call we\u2019ll sketch how the first three months would look for you.', cta: 'Book a 20-minute call' },
+        text: 'A critical mission, a sponsor behind it and a team to carry it. On a 20-minute call we’ll sketch how your first three months would look.' },
       likely: { tag: 'Likely fit', title: 'Worth a conversation.',
-        text: 'Most of the pieces are in place. On a short call we\u2019ll look at what\u2019s missing \u2014 often sponsorship or team scope \u2014 and whether this model is the right one for you.', cta: 'Book a 20-minute call' },
-      quick: { tag: 'Probably not the right model', title: 'Strategy as a Service may be more than you need.',
-        text: 'It\u2019s built for change that takes 12\u201318 months. For a focused, shorter challenge, a team session or coaching often serves better \u2014 or tell us about it and we\u2019ll point you the right way.',
-        cta: 'Talk it through anyway', alt: ['/hbdi/', 'Explore team development (HBDI)'] },
+        text: 'Most of the pieces are in place. On a short call we’ll look at what’s missing — often sponsorship or team scope — and whether this model is the right one.' },
       sponsor: { tag: 'Not yet', title: 'Start with the sponsor.',
-        text: 'Visible backing from the top is the one thing we don\u2019t compromise on \u2014 change doesn\u2019t sustain itself without it. A call can help you frame the case for your sponsor.', cta: 'Book a 20-minute call' },
-      team: { tag: 'Maybe \u2014 in a different format', title: 'Let\u2019s find the right starting point.',
-        text: 'The model works best with a core team of 8\u201312. If it\u2019s mostly you for now, one-to-one executive coaching can be the better first step.',
-        cta: 'Book a 20-minute call', alt: ['/#me', 'See executive coaching'] }
+        text: 'Visible backing from the top is the one thing we don’t compromise on. A call can help you frame the case for your sponsor first.' },
+      team: { tag: 'Maybe — in a different format', title: 'Let’s find the right starting point.',
+        text: 'The model works best with a core team of 8–12. If it’s mostly you for now, one-to-one executive coaching can be the better first step.',
+        alt: ['/executive-coaching/', 'See executive coaching'] }
     };
 
-    function show(i) {
-      step = i;
-      qs.forEach(function (q, k) { q.hidden = k !== i; });
-      res.hidden = true;
-      count.hidden = false;
-      count.textContent = 'Question ' + (i + 1) + ' of ' + qs.length;
-      fitBar.style.width = (i / qs.length) * 100 + '%';
-      back.hidden = i === 0;
-      restart.hidden = true;
-      var first = qs[i].querySelector('button');
-      if (first && fit.contains(document.activeElement)) first.focus();
+    function setNote(k, label) {
+      noteBox.classList.remove('is-fresh'); void noteBox.offsetWidth; noteBox.classList.add('is-fresh');
+      noteK.textContent = label || 'Good to know';
+      noteText.textContent = k;
     }
+    function score() { var t = 0; answers.forEach(function (a) { if (a) t += a.v; }); return t; }
+    function setGauge(pct, label, text) {
+      gauge.style.strokeDashoffset = CIRC * (1 - pct / 100);
+      gauge.style.opacity = pct > 0 ? 1 : 0;
+      gaugeNum.textContent = text || Math.round(pct);
+      fit.classList.toggle('fit2--nopct', !!text);
+      gaugeLabel.textContent = label || 'Readiness';
+    }
+    function hideEnds() { resBox.hidden = true; exitBox.hidden = true; fit.removeAttribute('data-state'); }
 
+    function show(i) {
+      step = i; hideEnds();
+      qs.forEach(function (q, k) { q.hidden = k !== i; });
+      dots.forEach(function (d, k) { d.className = k < i ? 'is-done' : k === i ? 'is-now' : ''; });
+      backBtn.hidden = i === 0;
+      restartBtn.hidden = i === 0;
+      setGauge(score() / MAX * 100);
+    }
     function finish() {
-      var flags = {}, score = 0;
-      answers.forEach(function (a) { score += a.v; if (a.flag) flags[a.flag] = true; });
-      var key = flags.quick ? 'quick' : flags.sponsor ? 'sponsor' : flags.team ? 'team' : score >= 9 ? 'strong' : 'likely';
+      var flags = {}, take = null;
+      answers.forEach(function (a) { if (a.flag) flags[a.flag] = true; if (a.take) take = a.take; });
+      var sc = score();
+      var key = flags.sponsor ? 'sponsor' : flags.team ? 'team' : sc >= 9 ? 'strong' : 'likely';
       var r = RESULTS[key];
       qs.forEach(function (q) { q.hidden = true; });
-      fitBar.style.width = '100%';
-      count.hidden = true;
+      dots.forEach(function (d) { d.className = 'is-done'; });
       fit.querySelector('[data-r-tag]').textContent = r.tag;
       fit.querySelector('[data-r-title]').textContent = r.title;
       fit.querySelector('[data-r-text]').textContent = r.text;
-      fit.querySelector('[data-r-cta]').textContent = r.cta;
       var alt = fit.querySelector('[data-r-alt]');
       if (r.alt) { alt.href = r.alt[0]; alt.textContent = r.alt[1]; alt.hidden = false; } else { alt.hidden = true; }
-      fit.setAttribute('data-result', key);
-      res.hidden = false;
-      back.hidden = false;
-      restart.hidden = false;
+      resBox.hidden = false;
+      fit.setAttribute('data-state', key);
+      setGauge(sc / MAX * 100, 'Your readiness');
+      setNote(TAKE[take] || TAKE.tNew, 'Your takeaway');
+      backBtn.hidden = false; restartBtn.hidden = false;
+    }
+    function exitEarly() {
+      qs.forEach(function (q) { q.hidden = true; });
+      exitBox.hidden = false;
+      fit.setAttribute('data-state', 'exit');
+      setGauge(0, 'Different fit', '\u2014');
+      setNote('The right tool depends on the size of the change. A focused, few-week challenge needs focus — not a program.', 'Your takeaway');
+      backBtn.hidden = false; restartBtn.hidden = false;
     }
 
     qs.forEach(function (q, i) {
       q.addEventListener('click', function (e) {
-        var b = e.target.closest('button[data-v]');
+        var b = e.target.closest('button');
         if (!b) return;
         Array.prototype.forEach.call(q.querySelectorAll('button'), function (x) { x.classList.toggle('is-picked', x === b); });
-        answers[i] = { v: Number(b.getAttribute('data-v')), flag: b.getAttribute('data-flag') };
-        setTimeout(function () { if (i + 1 < qs.length) show(i + 1); else finish(); }, 180);
+        if (b.hasAttribute('data-exit')) { answers.length = i; setTimeout(exitEarly, 200); return; }
+        answers[i] = { v: Number(b.getAttribute('data-v')), flag: b.getAttribute('data-flag'), take: b.getAttribute('data-take') };
+        answers.length = i + 1;
+        var nk = b.getAttribute('data-note');
+        if (nk && NOTES[nk]) setNote(NOTES[nk]);
+        setTimeout(function () { if (i + 1 < qs.length) show(i + 1); else finish(); }, 220);
       });
     });
-    back.addEventListener('click', function () { show(res.hidden ? Math.max(0, step - 1) : qs.length - 1); });
-    restart.addEventListener('click', function () {
+    backBtn.addEventListener('click', function () {
+      if (!resBox.hidden || !exitBox.hidden) { show(Math.min(step, qs.length - 1)); return; }
+      show(Math.max(0, step - 1));
+    });
+    restartBtn.addEventListener('click', function () {
       answers = [];
       Array.prototype.forEach.call(fit.querySelectorAll('.is-picked'), function (x) { x.classList.remove('is-picked'); });
-      fit.removeAttribute('data-result');
+      setNote(NOTES.intro);
       show(0);
     });
     show(0);

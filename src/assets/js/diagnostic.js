@@ -1,29 +1,30 @@
-// Homepage interactive diagnostic: pick a situation, get a tailored path.
+// Homepage hero: four doors in. Three go straight to their section; "Surprise me"
+// asks one question and answers it on the spot, over the hero photo.
 (function () {
   var root = document.querySelector('[data-diagnostic]');
   if (!root) return;
 
   var CONTENT = {
     strategy: {
+      said: 'Decisions don’t stick.',
       headline: 'You don’t need another strategy. You need one that survives Tuesday.',
-      body: 'This is what Strategy as a Service is built for — we don’t hand you a deck and leave. We stay in the room through implementation, so the direction you agreed on in January is still the direction in June.',
-      linkHref: '/strategy-as-a-service/',
-      linkText: 'See how an engagement works',
-      captureLabel: 'Want our short take on why strategies stall — and what to do differently? Leave your email and we’ll send it over.'
+      body: 'We don’t hand you a deck and leave. We stay in the room through delivery — so what you agreed in January is still the direction in June.',
+      linkHref: '/strategy-as-a-service/#fit',
+      linkText: 'Take the 1-minute fit check'
     },
     hbdi: {
+      said: 'It’s people, not plans.',
       headline: 'Smart people, misaligned wiring. That’s a thinking-styles problem, not a talent problem.',
-      body: 'HBDI shows your team how each person actually thinks and makes decisions — so the friction you’re seeing becomes something you can name and work with, not just tolerate.',
-      linkHref: '/hbdi/',
-      linkText: 'Explore HBDI',
-      captureLabel: 'Want the one-page HBDI overview? Leave your email and we’ll send it your way.'
+      body: 'HBDI shows how each person on your team actually thinks — so the friction becomes something you can name and use.',
+      linkHref: '/hbdi/#color-check',
+      linkText: 'Find out what color you think in'
     },
     retreat: {
+      said: 'I’m too close to it to see clearly.',
       headline: 'Then don’t make it from your desk.',
-      body: 'Our retreats take senior leaders out of the day-to-day — Arizona, or a high-alpine expedition in Austria — to work through what’s next with people who carry the same weight you do.',
+      body: 'Our retreats take senior leaders out of the day-to-day — the Arizona desert or a high-alpine expedition — to work through what’s next with people who carry the same weight.',
       linkHref: '/retreats/',
-      linkText: 'Explore the retreats',
-      captureLabel: 'Want details on dates and what to expect? Leave your email and we’ll send them over.'
+      linkText: 'Explore the retreats'
     }
   };
 
@@ -37,29 +38,22 @@
     Object.keys(steps).forEach(function (key) {
       steps[key].hidden = key !== name;
     });
-    root.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    root.setAttribute('data-current', name);
+    if (root.getBoundingClientRect().top < -40) root.scrollIntoView({ block: 'start', behavior: 'smooth' });
+    var focusEl = steps[name].querySelector('h1, button');
+    if (focusEl && name !== 'cards') { focusEl.setAttribute('tabindex', '-1'); focusEl.focus({ preventScroll: true }); }
   }
 
   function showResult(outcome) {
     var data = CONTENT[outcome];
     if (!data) return;
-
+    root.querySelector('[data-result-said]').textContent = '“' + data.said + '”';
     root.querySelector('[data-result-headline]').textContent = data.headline;
     root.querySelector('[data-result-body]').textContent = data.body;
-
     var link = root.querySelector('[data-result-link]');
     link.href = data.linkHref;
-    link.textContent = data.linkText;
-
-    root.querySelector('[data-capture-label]').textContent = data.captureLabel;
-    root.querySelector('[data-situation-field]').value = outcome;
-
-    var form = root.querySelector('[data-capture-form]');
-    form.hidden = false;
-    form.reset();
-    root.querySelector('[data-situation-field]').value = outcome;
-    root.querySelector('[data-capture-success]').hidden = true;
-
+    link.textContent = data.linkText + ' →';
+    root.setAttribute('data-shown', outcome);
     showStep('result');
   }
 
@@ -70,43 +64,10 @@
       if (target) target.scrollIntoView({ block: 'start', behavior: 'smooth' });
       return;
     }
-
     var outcomeBtn = e.target.closest('[data-outcome]');
-    if (outcomeBtn) {
-      showResult(outcomeBtn.getAttribute('data-outcome'));
-      return;
-    }
-
+    if (outcomeBtn) { showResult(outcomeBtn.getAttribute('data-outcome')); return; }
     var stepTarget = e.target.closest('[data-step-target]');
-    if (stepTarget) {
-      showStep(stepTarget.getAttribute('data-step-target'));
-      return;
-    }
-
-    var back = e.target.closest('[data-back]');
-    if (back) {
-      showStep('cards');
-    }
+    if (stepTarget) { showStep(stepTarget.getAttribute('data-step-target')); return; }
+    if (e.target.closest('[data-back]')) showStep('cards');
   });
-
-  var form = root.querySelector('[data-capture-form]');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var data = new FormData(form);
-      var body = new URLSearchParams();
-      data.forEach(function (value, key) { body.append(key, value); });
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString()
-      }).then(function () {
-        form.hidden = true;
-        root.querySelector('[data-capture-success]').hidden = false;
-      }).catch(function () {
-        form.submit();
-      });
-    });
-  }
 })();
