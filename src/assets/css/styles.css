@@ -2014,6 +2014,33 @@ html.dialog-open { overflow: hidden; }
 .diag-answer-again { font: inherit; font-size: 15px; color: rgba(251,249,244,0.8); background: none; border: 0; cursor: pointer; padding: 4px 0; border-bottom: 1px solid rgba(251,249,244,0.3); }
 .diag-answer-again:hover { color: var(--brass-light); border-color: var(--brass-light); }
 .diag-back--answer { margin: 22px 0 0; }
+/* Surprise me, routes A and B: scenario question, experiment card, back + start over row */
+.diag-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; align-self: flex-start; }
+.diag-nav .diag-back { margin-bottom: 22px; }
+.diag-nav--answer { margin-top: 22px; }
+.diag-nav--answer .diag-back { margin-bottom: 0; }
+.diag-scenario-q { font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--brass-light); margin-bottom: 2px; text-shadow: 0 2px 10px rgba(5,10,20,0.85); }
+.diag-step--scenario .ask-option:nth-child(2) { animation: diagIn .45s ease both; }
+.diag-step--scenario .ask-option:nth-child(3) { animation: diagIn .45s ease .08s both; }
+.diag-step--scenario .ask-option:nth-child(4) { animation: diagIn .45s ease .16s both; }
+.ask-option[aria-pressed="true"] { border-color: rgba(217,196,138,0.7); }
+.ask-option[aria-pressed="true"] .ask-option-n { background: var(--brass-light); color: var(--ink-deep); }
+.diag-experiment { margin-top: 26px; padding: 18px 22px 20px; border-radius: 12px; border-left: 3px solid var(--brass-light);
+  background: rgba(251,249,244,0.07); max-width: 560px; }
+.diag-experiment-label { font-size: 12.5px; font-weight: 700; letter-spacing: 1.4px; text-transform: uppercase; color: var(--brass-light); }
+.diag-experiment-text { font-size: 17px; line-height: 1.55; color: #FBF9F4; margin-top: 8px; }
+button.diag-answer-cta { font: inherit; font-weight: 600; font-size: 15px; }
+.diag-answer-cta:focus-visible, .diag-answer-again:focus-visible { outline: 2px solid var(--brass-light); outline-offset: 3px; }
+.diag-answer-panel h1:focus, .diag-ask-q h1:focus { outline: none; }
+@media (max-width: 640px) {
+  .diag-experiment { padding: 16px 16px 18px; }
+  .diag-experiment-text { font-size: 16px; }
+  .diag-answer-actions { gap: 14px 22px; }
+}
+@media (min-width: 901px) {
+  .diag-nav--answer { align-self: flex-end; }
+}
+
 @keyframes diagIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes diagPop { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: none; } }
 
@@ -2035,6 +2062,8 @@ html.dialog-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .situation-tile--shuffle, .situation-tile--shuffle::before { animation: none; }
   .diag-ask, .ask-option, .diag-answer-panel { animation: none !important; }
+  .ask-option, .ask-option-go { transition: none; }
+  .ask-option:hover { transform: none; }
 }
 @media (min-width: 901px) {
   /* keep the answer over the open sand on the right, not over the man's face */
