@@ -43,19 +43,19 @@ heroOverlay: true
     <button type="button" class="diag-back" data-back>&larr; Back</button>
     <div class="diag-ask">
       <div class="diag-ask-q">
-        <div class="diag-ask-kicker">Surprise me &middot; one question</div>
+        <div class="diag-ask-kicker">Surprise me</div>
         <h1>What&rsquo;s actually getting in the way <em>right now</em>?</h1>
         <p class="diag-ask-hint">Pick the one that stings a little.</p>
       </div>
       <div class="diag-ask-options">
-        <button type="button" class="ask-option" data-outcome="strategy">
+        <button type="button" class="ask-option" data-route="strategy">
           <span class="ask-option-n">A</span>
-          <span class="ask-option-text">Decisions don&rsquo;t stick.</span>
+          <span class="ask-option-text">Our strategy makes sense. Our calendars tell another story.</span>
           <span class="ask-option-go" aria-hidden="true">&rarr;</span>
         </button>
-        <button type="button" class="ask-option" data-outcome="hbdi">
+        <button type="button" class="ask-option" data-route="team">
           <span class="ask-option-n">B</span>
-          <span class="ask-option-text">It&rsquo;s people, not plans.</span>
+          <span class="ask-option-text">We&rsquo;re not moving forward together enough.</span>
           <span class="ask-option-go" aria-hidden="true">&rarr;</span>
         </button>
         <button type="button" class="ask-option" data-outcome="retreat">
@@ -63,6 +63,77 @@ heroOverlay: true
           <span class="ask-option-text">I&rsquo;m too close to it to see clearly.</span>
           <span class="ask-option-go" aria-hidden="true">&rarr;</span>
         </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="diag-step diag-step--ask diag-step--scenario" data-step="scenario" hidden>
+    <div class="diag-nav">
+      <button type="button" class="diag-back" data-nav-back>&larr; Back</button>
+      <button type="button" class="diag-back" data-back>Start over</button>
+    </div>
+    <div class="diag-ask">
+      <div class="diag-ask-q">
+        <div class="diag-ask-kicker">Surprise me</div>
+        <h1 data-scenario-headline></h1>
+        <p class="diag-ask-hint" data-scenario-support></p>
+      </div>
+      <div class="diag-ask-options" role="group" aria-labelledby="diag-scenario-q">
+        <p class="diag-scenario-q" id="diag-scenario-q" data-scenario-question></p>
+        <button type="button" class="ask-option" data-answer="0">
+          <span class="ask-option-n">1</span>
+          <span class="ask-option-text" data-answer-text></span>
+          <span class="ask-option-go" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="ask-option" data-answer="1">
+          <span class="ask-option-n">2</span>
+          <span class="ask-option-text" data-answer-text></span>
+          <span class="ask-option-go" aria-hidden="true">&rarr;</span>
+        </button>
+        <button type="button" class="ask-option" data-answer="2">
+          <span class="ask-option-n">3</span>
+          <span class="ask-option-text" data-answer-text></span>
+          <span class="ask-option-go" aria-hidden="true">&rarr;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="diag-step diag-step--answer diag-step--insight" data-step="insight" hidden>
+    <div class="diag-answer">
+      <div class="diag-answer-panel">
+        <div class="diag-answer-said">You said: <span data-insight-said></span></div>
+        <h1 data-insight-headline></h1>
+        <p class="diag-answer-body" data-insight-body></p>
+        <div class="diag-experiment">
+          <div class="diag-experiment-label">Try this</div>
+          <p class="diag-experiment-text" data-insight-experiment></p>
+        </div>
+        <div class="diag-answer-actions">
+          <button type="button" class="btn-primary diag-answer-cta" data-goto="invite" data-insight-cta></button>
+          <button type="button" class="diag-answer-again" data-goto="scenario">&#8635; Try another answer</button>
+        </div>
+      </div>
+      <div class="diag-nav diag-nav--answer">
+        <button type="button" class="diag-back" data-nav-back>&larr; Back</button>
+        <button type="button" class="diag-back" data-back>Start over</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="diag-step diag-step--answer diag-step--invite" data-step="invite" hidden>
+    <div class="diag-answer">
+      <div class="diag-answer-panel">
+        <h1 data-invite-headline></h1>
+        <p class="diag-answer-body" data-invite-body></p>
+        <div class="diag-answer-actions">
+          <a class="btn-primary diag-answer-cta" data-invite-link href="/"></a>
+          <button type="button" class="diag-answer-again" data-goto="scenario" data-invite-again></button>
+        </div>
+      </div>
+      <div class="diag-nav diag-nav--answer">
+        <button type="button" class="diag-back" data-nav-back>&larr; Back</button>
+        <button type="button" class="diag-back" data-back>Start over</button>
       </div>
     </div>
   </div>
