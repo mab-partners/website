@@ -45,9 +45,11 @@ heroOverlay: true
       <div class="diag-ask-q">
         <div class="diag-ask-kicker">Surprise me</div>
         <h1>What&rsquo;s actually getting in the way <em>right now</em>?</h1>
-        <p class="diag-ask-hint">Pick the one that stings a little.</p>
       </div>
       <div class="diag-ask-options">
+        <div class="diag-ask-prompt">
+          <p class="diag-ask-prompt-hint">Pick the one that stings a little.</p>
+        </div>
         <button type="button" class="ask-option" data-route="strategy">
           <span class="ask-option-n">A</span>
           <span class="ask-option-text">Our strategy makes sense. Our calendars tell another story.</span>
@@ -76,10 +78,12 @@ heroOverlay: true
       <div class="diag-ask-q">
         <div class="diag-ask-kicker">Surprise me</div>
         <h1 data-scenario-headline></h1>
-        <p class="diag-ask-hint" data-scenario-support></p>
       </div>
       <div class="diag-ask-options" role="group" aria-labelledby="diag-scenario-q">
-        <p class="diag-scenario-q" id="diag-scenario-q" data-scenario-question></p>
+        <div class="diag-ask-prompt">
+          <p class="diag-scenario-q" id="diag-scenario-q" data-scenario-question></p>
+          <p class="diag-ask-prompt-hint" data-scenario-support></p>
+        </div>
         <button type="button" class="ask-option" data-answer="0">
           <span class="ask-option-n">1</span>
           <span class="ask-option-text" data-answer-text></span>
